@@ -425,7 +425,6 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                 <div className="p-10 space-x-10 grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-6">
                     {
                     displayData.map((item,index) => (
-                        <Suspense fallback={<div className="animate-pulse"></div>}>
                             <Card 
                                 key={index} 
                                 className="shadow-md shadow-blue-gray-100 rounded-xl hover:scale-110 
@@ -447,7 +446,6 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                                 `$ ${item.price}`
                             }</div>
                             </Card>
-                        </Suspense>
                         ))
                 } </div>
                 <div className="mt-4 mb-10 flex justify-center">

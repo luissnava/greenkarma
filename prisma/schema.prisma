@@ -1,0 +1,117 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// Database Prodcution
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+
+model Categories {
+  id          Int    @id @default(autoincrement())
+  categorieId Int
+  name        String
+}
+
+model User {
+  id        Int          @id @default(autoincrement())
+  name      String
+  lastname  String
+  phone     String
+  email     String
+  password  String
+  wallets   Wallet[]
+  addresses Directions[]
+}
+
+model Directions {
+  id          Int      @id @default(autoincrement())
+  name        String
+  lastname    String
+  corporation String
+  direction   String
+  direction1  String
+  city        String
+  country     String
+  region      String
+  postal_code String
+  phone       String
+  createAt    DateTime @default(now())
+  userId      Int // Agrega una referencia al usuario que posee esta dirección
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Wallet {
+  id                Int      @id @default(autoincrement())
+  card_number       String
+  date_end          String
+  name_titular_card String
+  email             String
+  createAt          DateTime @default(now())
+  userId            Int // Agrega una referencia al usuario que posee esta billetera
+  user              User     @relation(fields: [userId], references: [id])
+}
+
+model Carrito {
+  id       Int      @id @default(autoincrement())
+  user     String   @unique
+  products Json
+  createAt DateTime @default(now())
+}
+
+model Productos {
+  id           Int      @id @default(autoincrement())
+  status       Boolean
+  categorie    String
+  name         String
+  price        Float
+  prices       Json
+  suscriptions Json
+  imagen       String
+  imagenes     Json
+  litros       Json
+  incluye      Json
+  createAt     DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  name     String
+  password String
+  email    String
+}
+
+model CodigosPostales {
+  id           Int    @id @default(autoincrement())
+  codigo       String
+  asentamiento String
+  municipio    String
+  estado       String
+}
+
+model Pedidos {
+  id           Int      @id @default(autoincrement())
+  user         String
+  phone        String
+  productos    Json
+  total        String
+  status       String
+  direction    String
+  location     String
+  delegation   String
+  codigopostal String
+  createdAt    DateTime @default(now())
+  updateAt     DateTime @updatedAt
+}

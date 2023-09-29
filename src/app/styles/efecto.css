@@ -1,0 +1,60 @@
+/* Estilos para la imagen y el div "prueba" */
+.image-container {
+    position: relative;
+    overflow: hidden;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+  .image-normal{
+    position: relative;
+    overflow: hidden;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+
+  .zoom-image {
+    width: 100%;
+    transition: transform 0.4s ease-in-out;
+  }
+  
+  .prueba{
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    width: 100%;
+    /* background-color: rgba(249, 250, 248, 0.8); */
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    transition: bottom 0.3s ease-in-out;
+  }
+
+  .cart-button {
+    opacity: 0;
+    transition: 100ms linear;
+    background-color: #bada55;
+    color: black;
+  }
+  /* Estilos para activar los efectos en hover */
+ 
+  .image-normal:hover .prueba{
+    bottom: 0;
+  }
+  .image-container:hover .zoom-image {
+    transform: scale(1.2);
+  }
+  
+  .image-container:hover .prueba {
+    bottom: 0;
+  }
+  
+  .image-container:hover ~ .boton .cart-button {
+    opacity: 1; 
+  }
+  
+ 
+
+
+
+
+
+  

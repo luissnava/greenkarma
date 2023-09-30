@@ -87,7 +87,6 @@ model Productos {
 
 model Admin {
   id       Int    @id @default(autoincrement())
-  name     String
   password String
   email    String
 }

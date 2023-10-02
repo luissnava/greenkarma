@@ -33,9 +33,6 @@ import {
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-          {/* <Button 
-          className="text-center text-white w-full p-2 rounded-lg bg-[#003c25] hover:bg-green-700 
-          focus:outline-none focus:border-green-500" onClick={handleDetalle}>Ver Detalle</Button> */}
         </CardFooter>
       </Card>
     );

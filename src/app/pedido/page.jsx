@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
     Input,
     Button,
@@ -52,16 +52,24 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
     const handleDirection = (event) =>{
         setDirection(event.target.value)
     }
-
-    const insertPedido = async(event) =>{
+  
+    const handlePedido = async(event) =>{
         event.preventDefault();
         if (session) {
             const user = session.user.email
             if (user) {
                 const response = await fetch("/api/pedidos", {
                     method: "POST",
-                    body: JSON.stringify({user: user, phone: telefono, productos: carrito, total:totalPedido, direction:direction, location:localidad,delegation: municipio,cp:codigoPostal}),
-                    headers: {
+                    body: JSON.stringify(
+                      {user: user, 
+                      phone: telefono,
+                      productos: carrito, 
+                      total:totalPedido, 
+                      direction:direction, 
+                      location:localidad,
+                      delegation: municipio,
+                      cp:codigoPostal}),
+                      headers: {
                         'Content-Type': 'application/json'
                     }
                 })
@@ -69,9 +77,9 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
                     console.log(response);
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
-                        // console.log(data);
+                        
                         if (data) {
-                            await loadPagos()
+                          handlePagos();
                         }
                         
                     } else {
@@ -81,8 +89,8 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
             }
         }
     }
-    const loadPagos = async() =>{
-       
+
+    const handlePagos = async() =>{
         if (session) {
             const user = session.user.email
             if (user) {
@@ -106,6 +114,31 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
        
     }
 
+
+    // const loadProductos = async () =>{
+    //     if (session) {
+    //         const user = session.user.email
+    //         if (user) {
+    //             const response = await fetch("/api/loadprices", {
+    //                 method: "POST",
+    //                 body: JSON.stringify({ user }),
+    //                 headers: {
+    //                     'Content-Type': 'application/json'
+    //                 }
+    //             })
+    //             if (response) {
+    //                 if (response.ok == true && response.status == 200) {
+    //                     const data = await response.json()
+    //                     // console.log(data);
+    //                 } else {
+    //                     console.log("Error del Servidor");
+    //                 }
+    //             }
+    //         }
+            
+    //     }
+    // }
+
     const handleOpenCloseModal = () =>{
         setOpen((cur) => !cur);
     }
@@ -126,31 +159,6 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
                         setCodigos(data.codigospostales)
-                    } else {
-                        console.log("Error del Servidor");
-                    }
-                }
-            }
-            
-        }
-    }
-
-    const loadProductos = async () =>{
-        if (session) {
-               
-            const user = session.user.email
-            if (user) {
-                const response = await fetch("/api/loadprices", {
-                    method: "POST",
-                    body: JSON.stringify({ user }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                if (response) {
-                    if (response.ok == true && response.status == 200) {
-                        const data = await response.json()
-                        // console.log(data);
                     } else {
                         console.log("Error del Servidor");
                     }
@@ -277,7 +285,7 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
                             rounded-lg bg-[#003c25] 
                             hover:bg-green-700 
                             focus:outline-none 
-                            focus:border-green-500" type="submit" onClick={insertPedido} disabled={status}>Realizar Pedido</Button>
+                            focus:border-green-500" type="submit" onClick={handlePedido} disabled={status}>Realizar Pedido</Button>
 
                             
                         </div>

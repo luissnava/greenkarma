@@ -8,13 +8,73 @@ import { FondoHogar } from '@/components/Hogar'
 import { FondoCocina } from '@/components/Cocina'
 import { FondoPersonal } from '@/components/Personal'
 import { FondoAuto } from '@/components/Auto'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 const handleBrowser = () =>{
     const browser = window.navigator.userAgent;
     console.log(browser);
 }
+
+
 const Home = () => {
-    useEffect(()=>{handleBrowser()},[])
+
+    const [paquetes,setPaquetes] = useState(null)
+    const [ropa,setRopa] = useState(null)
+    const [hogar,setHogar] = useState(null)
+    const [cocina,setCocina] = useState(null)
+    const [autos,setAutos] = useState(null)
+    const [personal,setPersonal] = useState(null)
+
+
+    const getProductos = async () => {
+        const lista = []
+        const response = await fetch("/api/getProductos", {
+            method: "POST",
+            body: JSON.stringify({}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (response) {
+            if (response.ok == true && response.status == 200) {
+                const data = await response.json()
+                if (data) {
+                    const productos = data.productos.map(item => ({
+                        id: item.id,
+                        status:item.status,
+                        categorie: item.categorie,
+                        name: item.name,
+                        price: item.price,
+                        prices: item.prices,
+                        suscriptions: item.suscriptions,
+                        imagen: item.imagen,
+                        imagenes: item.imagenes,
+                        litros: item.litros,
+                        incluye: item.incluye,
+                        date_created: item.createdAt,
+                        date_updated: item.updateAt
+                    }))
+                    const paquetes = productos.filter((item) => item.categorie == "paquetes")
+                    const ropa = productos.filter((item) => item.categorie == "ropa")
+                    const hogar = productos.filter((item) => item.categorie == "hogar")
+                    const autos = productos.filter((item) => item.categorie == "autos")
+                    const cocina = productos.filter((item) => item.categorie == "cocina")
+                    const personal = productos.filter((item) => item.categorie == "personal")
+                    setPaquetes(paquetes)
+                    setRopa(ropa)
+                    setHogar(hogar)
+                    setAutos(autos)
+                    setCocina(cocina)
+                    setPersonal(personal)
+                }
+    
+            } else {
+                console.log("Error del Servidor");
+            }
+        }
+    }
+
+    useEffect(()=>{handleBrowser();getProductos()},[])
+
     return (
         <div className="w-full inline-block">
             <div className="mt-24 w-full h-screen">
@@ -45,7 +105,7 @@ const Home = () => {
             </div>
 
             <div className="w-full  p-10">
-                <Carrusel valor={"paquetes"}></Carrusel>
+                <Carrusel valor={paquetes}></Carrusel>
             </div>
             </div>
 
@@ -54,7 +114,7 @@ const Home = () => {
             <FondoRopa></FondoRopa>
             </div>
             <div className="w-full ">
-            <Carrusel valor={"ropa"}></Carrusel>
+            <Carrusel valor={ropa}></Carrusel>
             </div>
             </div>
 
@@ -63,7 +123,7 @@ const Home = () => {
                 <FondoHogar></FondoHogar>
             </div>
             <div className="w-full">
-                <Carrusel valor={"hogar"} />
+                <Carrusel valor={hogar} />
             </div>
             </div>
 
@@ -72,26 +132,26 @@ const Home = () => {
             <FondoCocina></FondoCocina>
             </div>
             <div className="w-full">
-            <Carrusel valor={'cocina'} />
+            <Carrusel valor={cocina} />
             </div>
             </div>
 
             <div className=' w-full'>
-            <div className="mt-5 mb-20"><FondoPersonal /></div>
-            <div className="">
-            <Carrusel valor={"personal"} />
-            </div>
+                <div className="mt-5 mb-20"><FondoPersonal /></div>
+                <div className="">
+                    <Carrusel valor={personal} />
+                </div>
             </div>
 
             <div className='w-full'>
             <FondoAuto />
-            <Carrusel valor={"autos"} />
+            <Carrusel valor={autos} />
             </div>
 
             <div className='w-full h-[50vh]'>
             <div className="grid grid-cols-1 mx-auto flex justify-center items-center text-center p-10 w-full bg-fixed bg-cover bg-center h-full" style={{ backgroundImage: "url('/karma_fondo.png')" }}>
-                <div className="text-white text-lg sm:text-2xl">Libera tu mente de comprar productos de Green Karma</div>
-                <div className="text-white text-xl sm:text-2xl font-bold mt-2">TE LOS ENVIÁMOS CON LA PERIODICIDAD QUE NECESITES</div>
+                <div className="text-white text-2xl sm:text-2xl md:text-5xl">Libera tu mente de comprar productos de limpieza</div>
+                <div className="text-white text-2xl sm:text-2xl md:text-5xl mt-2">Escoge tu periodicidad de entrega</div>
                 <Link href={'/tienda'} 
                 className="w-[40%] md:w-[10%] sm:w-[30%] py-2 mx-auto border border-white text-white 
                 mt-6 flex justify-center p-0 hover:bg-black hover:border-none transition duration-100 cursor-pointer">Comprar ahora</Link>
@@ -128,10 +188,10 @@ const Home = () => {
             </div>
 
             <div className='w-full h-[50vh]'>
-            <div className="grid grid-cols-1 mx-auto flex justify-center items-center text-center p-5 w-full bg-fixed bg-cover bg-center h-full" style={{ backgroundImage: "url('/karma_fondo2.png')" }}>
-                <div className="text-white text-center text-5xl md:text-4xl sm:text-xl font-bold mt-2">¡Gracias por comprometerte con nuestro planeta!</div>
-                <div className="text-white text-center text-2xl md:text-2xl sm:text-lg mt-5 mb-5">Te devolverémos 10 pesos por cada botella que entregues</div>
-            </div>
+                <div className="grid grid-cols-1 mx-auto flex justify-center items-center text-center p-5 w-full bg-fixed bg-cover bg-center h-full" style={{ backgroundImage: "url('/karma_fondo2.png')" }}>
+                    <div className="text-white text-center text-5xl md:text-5xl sm:text-xl  mt-2">¡Gracias por comprometerte con nuestro planeta!</div>
+                    <div className="text-white text-center text-4xl md:text-4xl sm:text-lg  mb-5">Te devolvemos $10MXN por cada botella Green Karma que regreses</div>
+                </div>
             </div>
 
         </div>

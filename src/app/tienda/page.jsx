@@ -73,7 +73,7 @@ const Tienda = () => {
                 <div className="absolute inset-0 bg-fixed bg-cover bg-center"
                     style={
                         {
-                            backgroundImage: "url('bann.png')"
+                            backgroundImage: "url('bann.jpeg')"
                         }
                 }></div>
             </div>

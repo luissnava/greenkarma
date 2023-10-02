@@ -25,10 +25,10 @@ export async function POST (request){
                     quantity: item.cantidadProduct
                 }
             )),
-        success_url: "http://localhost:3000/user",
+        success_url: "http://localhost:3000/finalizado",
         cancel_url: "http://localhost:3000/carrito"
     })
-    // console.log(sessionCheckout);
+    console.log(sessionCheckout);
     return NextResponse.json({
         status: 200,
         url: sessionCheckout.url,

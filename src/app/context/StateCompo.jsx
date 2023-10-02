@@ -6,6 +6,11 @@ const StateCompo = ({children}) => {
     const [counter,setCounter] = useState(0)
     const {data: session} = useSession()
     const [message, setMessage] = useState(false)
+    const [order,setOrder] = useState(null)
+
+    const handleOrders = (param) =>{
+      setOrder(param)
+    }
     const mensaje = (valor) =>{
       setMessage(valor)
     }
@@ -76,7 +81,7 @@ const StateCompo = ({children}) => {
 
   
   return (
-    <counterContext.Provider value={{counter,message,igualar,restar,reset,mensaje}}>
+    <counterContext.Provider value={{counter,message,order,igualar,restar,reset,mensaje,handleOrders}}>
         {children}
     </counterContext.Provider>
   )

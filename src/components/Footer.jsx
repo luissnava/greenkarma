@@ -23,6 +23,7 @@ const Footer = () => {
                                 </a>
                             </div>
                         </div>
+                        <div className="clas">Desarrollado por BoomGrow</div>
 
                     </div>
 

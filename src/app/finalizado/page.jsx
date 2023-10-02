@@ -1,33 +1,9 @@
-"use client";
+
 import React, {useContext} from 'react'
 import Link from 'next/link';
 import { counterContext } from "@/app/context/counterContext";
 const PedidoFinalizado = () => {
 
-
-    // const handleOrders = async() =>{
-    //     if (session) {
-    //         const user = session.user.email
-    //         if (user) {
-    //             const response = await fetch("/api/pedidos", {
-    //                 method: "POST",
-    //                 body: JSON.stringify(carrito),
-    //                 headers: {
-    //                     'Content-Type': 'application/json'
-    //                 }
-    //             })
-    //             if (response) {
-    //                 if (response.ok == true && response.status == 200) {
-    //                     const data = await response.json()
-    //                     window.location.href = data.url
-    //                 } else {
-    //                     console.log("Error del Servidor");
-    //                 }
-    //             }
-    //         }
-    //     }
-       
-    // }
 
     return (
         <div>

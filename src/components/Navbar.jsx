@@ -110,9 +110,9 @@ export function NavbarSimple() {
                                             })}}>
                                                 Salir 
                                             </MenuItem>
-                                            {/* <MenuItem>
+                                            <MenuItem>
                                                 <Link href={"/user"}>Mi Cuenta</Link>
-                                            </MenuItem> */}
+                                            </MenuItem>
                                             </>
                                             ): 
                                             <MenuItem onClick={()=> signIn()}>Ingresar</MenuItem>

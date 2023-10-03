@@ -1,9 +1,5 @@
 import {NextResponse} from "next/server";
 import {prisma} from "@/libs/prisma";
-
-
-
-// Agrega productos al carrito
 export async function POST(request) {
     const data = await request.json()
     console.log(data);
@@ -11,7 +7,10 @@ export async function POST(request) {
         const result = await prisma.pedidos.findMany({
             where: {
                 user: data.user,
-                status: "enProceso"
+                AND: [
+                    {status: "enProceso"},
+                    {status: "enTransito"}
+                ]
             }
         })
         console.log(result);

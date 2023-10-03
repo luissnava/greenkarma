@@ -285,7 +285,7 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
                             rounded-lg bg-[#003c25] 
                             hover:bg-green-700 
                             focus:outline-none 
-                            focus:border-green-500" type="submit" onClick={handlePedido} disabled={status}>Realizar Pedido</Button>
+                            focus:border-green-500" onClick={handlePedido} disabled={status}>Realizar Pedido</Button>
 
                             
                         </div>

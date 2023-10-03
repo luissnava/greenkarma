@@ -7,7 +7,9 @@ export async function POST(request) {
         const result = await prisma.pedidos.findMany({
             where: {
                 user: data.user,
-                // status: "enProceso",
+                status: {
+                    not: "entregado"
+                },
             }
         })
         console.log(result);

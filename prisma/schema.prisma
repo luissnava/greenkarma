@@ -113,3 +113,17 @@ model Pedidos {
   createdAt    DateTime @default(now())
   updateAt     DateTime @updatedAt
 }
+model Orders {
+  id           Int      @id @default(autoincrement())
+  user         String
+  phone        String
+  productos    Json
+  total        String
+  status       String
+  direction    String
+  location     String
+  delegation   String
+  codigopostal String
+  createdAt    DateTime @default(now())
+  updateAt     DateTime @updatedAt
+}

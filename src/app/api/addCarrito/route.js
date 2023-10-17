@@ -1,7 +1,6 @@
 import {NextResponse} from "next/server";
 import {prisma} from "@/libs/prisma";
 
-
 // Agrega productos al carrito
 export async function POST(request) {
     let nuevoProducto = null

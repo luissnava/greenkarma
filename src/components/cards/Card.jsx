@@ -14,13 +14,16 @@ import Link from "next/link";
 
 const NormalCard = ({ id, imageURL, name, price, description }) => {
   return (
-    <div className="w-56 h-48 p-0 m-0">
-      <Link key={id} href={`/producto/${id}`}>
-        <div className="image-container p-0 m-0 ">
-          <Image src={imageURL} width={10000} height={10000} alt="" className="hover:scale-110 transition-transform duration-300 transform-gpu"/>
-        </div>
+    <div className="flex justify-center">
+      <div className="mx-auto">
+        <Link key={id} href={`/producto/${id}`}>
+        
+          <Image src={imageURL} width={400} height={100} alt="" className="hover:scale-110 transition-transform duration-300 transform-gpu"/>
+        
       
-      </Link>
+        </Link>
+      </div>
+      
     </div>
     
   );

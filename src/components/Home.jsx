@@ -119,12 +119,12 @@ const Home = () => {
             </div>
 
             <div className=' w-full'>
-            <div className="w-full">
-                <FondoHogar></FondoHogar>
-            </div>
-            <div className="w-full">
-                <Carrusel valor={hogar} />
-            </div>
+                <div className="w-full">
+                    <FondoHogar></FondoHogar>
+                </div>
+                <div className="w-full">
+                    <Carrusel valor={hogar} />
+                </div>
             </div>
 
             <div className=' w-full'>
@@ -162,10 +162,10 @@ const Home = () => {
             <div className="mx-auto text-center mt-20">
                 <div className="text-3xl font-bold">Modo Green Karma</div>
                 <div className="">
-                <Image src={"/modo_karma/modo_01.png"} width={10000} height={10000} alt="Imagen" className='w-full' />
+                    <Image src={"/modo_karma/modo_01.png"} width={10000} height={10000} alt="Imagen" className='w-full' />
                 </div>
                 <div className="">
-                <Image src={"/modo_karma/modo_02.png"} width={10000} height={10000} alt="Imagen" className='w-full' />
+                    <Image src={"/modo_karma/modo_02.png"} width={10000} height={10000} alt="Imagen" className='w-full' />
                 </div>
             </div>
             </div>
@@ -189,8 +189,8 @@ const Home = () => {
 
             <div className='w-full h-[50vh]'>
                 <div className="grid grid-cols-1 mx-auto flex justify-center items-center text-center p-5 w-full bg-fixed bg-cover bg-center h-full" style={{ backgroundImage: "url('/karma_fondo2.png')" }}>
-                    <div className="text-white text-center text-5xl md:text-5xl sm:text-xl  mt-2">¡Gracias por comprometerte con nuestro planeta!</div>
-                    <div className="text-white text-center text-4xl md:text-4xl sm:text-lg  mb-5">Te devolvemos $10MXN por cada botella Green Karma que regreses</div>
+                    <div className="text-white text-center text-2xl md:text-5xl sm:text-xl  mt-2">¡Gracias por comprometerte con nuestro planeta!</div>
+                    <div className="text-white text-center text-2xl md:text-4xl sm:text-lg  mb-5">Te devolvemos $10MXN por cada botella Green Karma que regreses</div>
                 </div>
             </div>
 

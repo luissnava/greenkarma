@@ -29,31 +29,30 @@ export function ModalInicial() {
             <div className="flex justify-end p-5 cursor-pointer">
                 <FontAwesomeIcon icon={faXmark} size="2x" color="black" onClick={handleOpen} className="font-light"/>
             </div>
-            <div className="text-8xl font-bold text-gray-700 w-full text-center w-full">
+            <div className="text-3xl mt-8 sm:text-xl sm:mt-5 md:mt-5 md:text-5xl font-bold text-gray-900 w-full text-center w-full">
                 Envio Gratis
             </div>
-            <div className="text-3xl font-bold text-gray-700 w-full text-center uppercase mb-10">
+            <div className="text-2xl font-bold text-gray-900 w-full text-center uppercase mb-10">
                 A partir de $199
             </div>
             
-            <div className="text-2xl font-bold text-gray-700 w-full text-center mt-20">
+            <div className="text-xl font-bold text-gray-900 w-full text-center mt-10 sm:mt-5 md:mt-10 lg:mt-10">
                 
                 <Link href={"/tienda"}
-                className="text-center text-xl text-white p-3 rounded-lg bg-[#003c25] hover:bg-green-700 focus:outline-none focus:border-green-500">
+                className="text-xl sm:text-sm md:text-2xl text-center text-white p-3 rounded-lg bg-[#003c25] hover:bg-green-900 focus:outline-none focus:border-green-500">
                 Comprar</Link>
             </div>
-            <div className="sm:mt-8 text-xl font-bold text-gray-700 w-full text-center uppercase md:mt-32 mt-20">
+            <div className="mt-5 text-lg sm:text-md sm:mt-5 md:mt-10 md:text-xl font-bold text-gray-900 w-full text-center uppercase">
             ¡SEGUIRÉMOS AMPLIANDO NUESTRA ZONAS!
             </div>
-            <div className="text-sm text-gray-700 w-full text-center uppercase mt-5">
+            <div className="text-sm font-bold text-gray-900 w-full text-center uppercase mt-5">
             MANTENTE ATENTO A LAS ACTUALIZACIONES
             </div>
             
-            <div  className="flex mt-10 sm:mt-10 md:mt-10 justify-center text-sm font-bold text-gray-700 w-[50%] md:w-full sm:w-[80%] uppercase">
+            <div  className="text-sm w-full mt-5 mx-auto text-center sm:text-sm sm:mt-5 sm:w-[50%] md:mt-10 justify-center font-bold text-gray-900 md:w-full sm:w-[80%] uppercase">
                   {
                     zonas?.map(item => (
-                    
-                      <div key={item.id} className="">{item.name}</div>
+                      <div key={item.id} className="text-center">{item.name}</div>
                   ))
                   }
             </div>

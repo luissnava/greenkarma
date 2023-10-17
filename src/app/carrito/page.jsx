@@ -241,13 +241,14 @@ const Carrito = () => {
     }
 
     const handleOpenCloseModal = async() =>{
-        if (session) {
-            setOpen((cur) => !cur);
-        }else{
-            await signIn({
-                redirect: true
-            })
-        }
+        setOpen((cur) => !cur);
+        // if (session) {
+        //     setOpen((cur) => !cur);
+        // }else{
+        //     await signIn({
+        //         redirect: true
+        //     })
+        // }
         
     }
 

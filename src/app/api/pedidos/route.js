@@ -2,10 +2,8 @@ import {NextResponse} from "next/server";
 import {prisma} from "@/libs/prisma";
 
 
-
 export async function POST(request) {
     const data = await request.json()
-    console.log(data);
     try {
         const result = await prisma.pedidos.create({
             data: {
@@ -17,28 +15,41 @@ export async function POST(request) {
                 direction: data.direction,
                 location: data.location,
                 delegation: data.delegation,
-                codigopostal: data.cp
+                codigopostal: data.codigopostal
             }
         })
         if (result) {
-            console.log(result);
-            const eliminados = await prisma.carrito.update({
+            console.log("Pedido Registrado", result);
+            const orders = await prisma.orders.delete({
                 where: {
-                    user: data.user
-                },
-                data: {
-                    products: []
+                    id: data.id
                 }
-            });
-            console.log(eliminados);
-            if (eliminados) {
-                console.log("Pedido agregado ->",result);
-                return NextResponse.json({
-                    success: true,
-                    message: 'Pedido agregado correctamente',
-                    data: result
-                }, {status: 200});
+            })
+            if (orders) {
+                console.log("Orden eliminada ->", orders);
+                const eliminados = await prisma.carrito.update({
+                    where: {
+                        user: data.user
+                    },
+                    data: {
+                        products: []
+                    }
+                });
+                if (eliminados) {
+                    return NextResponse.json({
+                        success: true,
+                        message: 'Pedido agregado correctamente',
+                        data: result
+                    }, {status: 200});
+
+                }else{
+                    console.log("Error al vaciar el carrito");
+                }
+
+            } else {
+                console.log("Error al eliminar la orden");
             }
+
         } else {
             return NextResponse.json({
                 success: false,
@@ -52,11 +63,6 @@ export async function POST(request) {
             message: 'Error del servidor al agregar el pedido'
         }, {status: 500});
     }
-  
-    
-    
+
 
 }
-
-
-

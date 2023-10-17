@@ -14,7 +14,7 @@ const Tienda = () => {
         const lista = []
         const response = await fetch("/api/getProductos", {
             method: "POST",
-            body: JSON.stringify({}),
+            body: JSON.stringify(),
             headers: {
                 'Content-Type': 'application/json'
             }

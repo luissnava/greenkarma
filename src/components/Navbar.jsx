@@ -148,6 +148,45 @@ export function NavbarSimple() {
                             <FontAwesomeIcon icon={faBars}/>
                         )
                     } </IconButton>
+                    <Typography as="li" variant="lead" color="blue-gray" className="p-1 ml-3 icono-oculto font-medium">
+                        <Menu placement="bottom-end">
+                            <MenuHandler>
+                                {
+                                    session?.user ? <Avatar src={session.user.image} size="sm" alt="avatar" className="cursor-pointer"/> :<FontAwesomeIcon className="cursor-pointer"
+                                    icon={faUser}></FontAwesomeIcon>
+                                }
+                            </MenuHandler>
+                            <MenuList>
+                                {
+                                    session?.user ?(
+                                    <>
+                                    <MenuItem onClick={async ()=> {await signOut({
+                                        callbackUrl: "/"
+                                    })}}>
+                                        Salir 
+                                    </MenuItem>
+                                    <MenuItem>
+                                        <Link href={"/user"}>Mi Cuenta</Link>
+                                    </MenuItem>
+                                    </>
+                                    ): 
+                                    <MenuItem onClick={()=> signIn()}>Ingresar</MenuItem>
+                                }
+                            </MenuList>
+                        </Menu>
+                    </Typography>
+                     <div className="cursor-pointer ml-4 icono-oculto" onClick={handleClickCarrito}>
+                        {
+                            counter > 0 ? 
+                            
+                            <Badge content={counter} color="green">
+                                <FontAwesomeIcon icon={faCartShopping} size="lg"/>
+                            </Badge>
+                                : <FontAwesomeIcon icon={faCartShopping} size="lg"/>
+                        }
+                    </div>
+                    
+
                 </div>
                 <Collapse open={openNav}>
                     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -166,7 +205,7 @@ export function NavbarSimple() {
                                 className="flex items-center hover:text-green-500 transition-colors"  
                                 onClick={() => setOpenNav(!openNav)}>Acerca De</Link>
                         </Typography>
-                        <Typography as="li" variant="lead" color="blue-gray" className="p-1 font-medium">
+                        {/* <Typography as="li" variant="lead" color="blue-gray" className="p-1 font-medium">
                             <Menu placement="bottom-end">
                                 <MenuHandler>
                                     {
@@ -196,7 +235,7 @@ export function NavbarSimple() {
 
                         <div className="cursor-pointer" onClick={() => {setOpenNav(!openNav); handleClickCarrito()}}>
                             <FontAwesomeIcon icon={faCartShopping} size="lg"/>
-                        </div>
+                        </div> */}
 
                     </ul>
                 </Collapse>

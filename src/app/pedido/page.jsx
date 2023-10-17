@@ -53,12 +53,13 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
         setDirection(event.target.value)
     }
   
-    const handlePedido = async(event) =>{
+    const handleOrders = async(event) =>{
         event.preventDefault();
+        
         if (session) {
             const user = session.user.email
             if (user) {
-                const response = await fetch("/api/pedidos", {
+                const response = await fetch("/api/orders", {
                     method: "POST",
                     body: JSON.stringify(
                       {user: user, 
@@ -114,43 +115,13 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
        
     }
 
-
-    // const loadProductos = async () =>{
-    //     if (session) {
-    //         const user = session.user.email
-    //         if (user) {
-    //             const response = await fetch("/api/loadprices", {
-    //                 method: "POST",
-    //                 body: JSON.stringify({ user }),
-    //                 headers: {
-    //                     'Content-Type': 'application/json'
-    //                 }
-    //             })
-    //             if (response) {
-    //                 if (response.ok == true && response.status == 200) {
-    //                     const data = await response.json()
-    //                     // console.log(data);
-    //                 } else {
-    //                     console.log("Error del Servidor");
-    //                 }
-    //             }
-    //         }
-            
-    //     }
-    // }
-
-    const handleOpenCloseModal = () =>{
-        setOpen((cur) => !cur);
-    }
-
-    const loadCodigos = async () =>{
+    const loadPricesStripe = async () =>{
         if (session) {
-               
             const user = session.user.email
             if (user) {
-                const response = await fetch("/api/codigos", {
+                const response = await fetch("/api/loadprices", {
                     method: "POST",
-                    body: JSON.stringify({ user }),
+                    body: JSON.stringify(),
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -158,7 +129,7 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
                 if (response) {
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
-                        setCodigos(data.codigospostales)
+                        console.log(data);
                     } else {
                         console.log("Error del Servidor");
                     }
@@ -166,6 +137,50 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
             }
             
         }
+    }
+
+    const handleOpenCloseModal = () =>{
+        setOpen((cur) => !cur);
+    }
+
+    const loadCodigos = async () =>{
+        const response = await fetch("/api/codigos", {
+            method: "POST",
+            body: JSON.stringify(),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (response) {
+            if (response.ok == true && response.status == 200) {
+                const data = await response.json()
+                setCodigos(data.codigospostales)
+            } else {
+                console.log("Error del Servidor");
+            }
+        }
+        // if (session) {
+               
+        //     const user = session.user.email
+        //     if (user) {
+        //         const response = await fetch("/api/codigos", {
+        //             method: "POST",
+        //             body: JSON.stringify({ user }),
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             }
+        //         })
+        //         if (response) {
+        //             if (response.ok == true && response.status == 200) {
+        //                 const data = await response.json()
+        //                 setCodigos(data.codigospostales)
+        //             } else {
+        //                 console.log("Error del Servidor");
+        //             }
+        //         }
+        //     }
+            
+        // }
     }
 
     useEffect(()=>{
@@ -177,6 +192,7 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
             }
         }
        loadCodigos()
+       loadPricesStripe()
        
     },[session])
 
@@ -285,7 +301,7 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
                             rounded-lg bg-[#003c25] 
                             hover:bg-green-700 
                             focus:outline-none 
-                            focus:border-green-500" onClick={handlePedido} disabled={status}>Realizar Pedido</Button>
+                            focus:border-green-500" onClick={handleOrders} disabled={status}>Realizar Pedido</Button>
 
                             
                         </div>

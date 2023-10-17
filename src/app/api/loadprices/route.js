@@ -15,5 +15,6 @@ export async function POST() {
             hasMore = false;
         }
     }
+    console.log(allPrices);
     return NextResponse.json({status: 200, productos: allPrices, message: "Productos Cargados"})
 }

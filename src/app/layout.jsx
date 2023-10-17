@@ -1,13 +1,11 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-import { NavbarSimple } from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import {Providers} from './Providers'
-import Chat from '@/components/whats'
 const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Green Karma',
-  description: 'Green Karma',
+  description: 'Green Karma Ecomerce',
+  keywords: "tienda, online, ecommerce, limpieza, detergentes, productos, multiusos, ropa, autos, hogar, limpiadores, ambiente, reciclar, reciclaje, envase"
 }
 
 export default function RootLayout({ children }) {

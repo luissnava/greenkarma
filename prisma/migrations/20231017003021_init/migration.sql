@@ -118,6 +118,24 @@ CREATE TABLE "Pedidos" (
     CONSTRAINT "Pedidos_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Orders" (
+    "id" SERIAL NOT NULL,
+    "user" TEXT NOT NULL,
+    "phone" TEXT NOT NULL,
+    "productos" JSONB NOT NULL,
+    "total" TEXT NOT NULL,
+    "status" TEXT NOT NULL,
+    "direction" TEXT NOT NULL,
+    "location" TEXT NOT NULL,
+    "delegation" TEXT NOT NULL,
+    "codigopostal" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updateAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Orders_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Carrito_user_key" ON "Carrito"("user");
 

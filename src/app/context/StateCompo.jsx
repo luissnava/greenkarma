@@ -50,9 +50,9 @@ const StateCompo = ({children}) => {
                           const productos = data.articulos.map(item => item.products)
   
                           if (productos[0].length == 0) {
-                              reset()
+                            reset()
                           }else{
-                             igualar(productos[0].length)
+                            igualar(productos[0].length)
                           }
                         }
                        

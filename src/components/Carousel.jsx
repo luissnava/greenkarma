@@ -3,28 +3,24 @@
 "use client"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import PaqueteCard from "./cards/PaqueteCard";
+import Image from "next/image";
+import {Swiper, SwiperSlide} from 'swiper/react'
+import {Pagination} from "swiper/modules";
+import { Typography } from "@material-tailwind/react";
 import NormalCard from "./cards/Card";
+import Link from "next/link";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import { useRef } from "react";
 const Carrusel = ({ valor }) => {
     const contentRef = useRef(null);
 
-    const scrollLeft = () => {
-        if (contentRef.current) {
-            contentRef.current.scrollLeft -= 500;
-        }
-    };
-
-    const scrollRight = () => {
-        if (contentRef.current) {
-            contentRef.current.scrollLeft += 500;
-        }
-    };
-
+    console.log(valor);
    
     return (
-        <div className="w-[90%] mx-auto">
-            <div className="mt-10 relative w-full">
+        <div className="w-[100%] mx-auto">
+            {/* <div className="mt-10 relative w-full">
                 <FontAwesomeIcon
                     icon={faAngleLeft}
                     size="2xl"
@@ -36,12 +32,10 @@ const Carrusel = ({ valor }) => {
                         valor?.map(item => (
                             <div key={item.id} className="sm:space-x-2 md:p-4 lg:p-4 p-4">
                                 <div key={item.id} className="sm:space-x-2 md:p-4 lg:p-4 p-4">
-                                    {/* Renderizar PaqueteCard si valor es "paquetes", de lo contrario, renderizar NormalCard */}
-                                    {item.categorie === "paquetes" ? (
-                                        <PaqueteCard id={item.id} imageURL={item.imagen} categoria={item.categorie} name={item.name} price={item.price} description={item.description} />
-                                    ) : (
-                                        <NormalCard id={item.id} imageURL={item.imagen} name={item.name} price={item.price} description={item.description} />
-                                    )}
+                                   
+                                    
+                                  <NormalCard id={item.id} imageURL={item.imagen} name={item.name} price={item.price} description={item.description} />
+                                    
                                 </div>
 
                             </div>
@@ -54,7 +48,51 @@ const Carrusel = ({ valor }) => {
                     className="carousel-icon right-10"
                     onClick={scrollRight}
                 />
-            </div>
+            </div> */}
+
+        <div className='mt-24 flex justify-center'>
+            
+            <Swiper 
+                effect={''}
+                // onSlideChangeTransitionEnd={handleData}
+                spaceBetween={0}
+                grabCursor={true}
+                centeredSlides={false}
+                loop={true}
+                slidesPerView={3}
+                pagination={{
+                    clickable: true,
+                }}
+                modules={[Pagination]}
+               
+                className="swiper">
+                {
+                valor?.map((item, index) => (
+                    <SwiperSlide key={index}
+                        className='swiper-slide'>
+                           <div className="flex justify-center items-center carousel-image"> 
+                               
+                                <div className="">
+                                    <Link key={item.id} href={`/producto/${item.id}`}>
+                                        <Image src={item.imagen} width={300} height={100} alt="" 
+                                        className="hover:scale-110 transition-transform duration-300 transform-gpu"/>
+                                    </Link>
+                                </div>
+                                
+                           </div>
+                           {
+                            item.categorie == "paquetes" ?<Typography color="blue-gray" className="w-full mt-5 font-large">
+                            {item.name} </Typography> : <></>
+                           }
+                           
+                      
+                    </SwiperSlide>
+                ))
+            } </Swiper>
+
+
+            <div className="yates" id='yates'></div>
+        </div>
         </div>
     );
 

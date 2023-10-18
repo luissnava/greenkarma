@@ -116,35 +116,7 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
     }
 
     const loadPricesStripe = async () =>{
-        if (session) {
-            const user = session.user.email
-            if (user) {
-                const response = await fetch("/api/loadprices", {
-                    method: "POST",
-                    body: JSON.stringify(),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                if (response) {
-                    if (response.ok == true && response.status == 200) {
-                        const data = await response.json()
-                        console.log(data);
-                    } else {
-                        console.log("Error del Servidor");
-                    }
-                }
-            }
-            
-        }
-    }
-
-    const handleOpenCloseModal = () =>{
-        setOpen((cur) => !cur);
-    }
-
-    const loadCodigos = async () =>{
-        const response = await fetch("/api/codigos", {
+        const response = await fetch("/api/loadprices", {
             method: "POST",
             body: JSON.stringify(),
             headers: {
@@ -154,18 +126,20 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
         if (response) {
             if (response.ok == true && response.status == 200) {
                 const data = await response.json()
-                setCodigos(data.codigospostales)
+                console.log("prices load");
+                console.log(data);
+                console.log("carrito");
+                console.log(carrito);
             } else {
                 console.log("Error del Servidor");
             }
         }
         // if (session) {
-               
         //     const user = session.user.email
         //     if (user) {
-        //         const response = await fetch("/api/codigos", {
+        //         const response = await fetch("/api/loadprices", {
         //             method: "POST",
-        //             body: JSON.stringify({ user }),
+        //             body: JSON.stringify(),
         //             headers: {
         //                 'Content-Type': 'application/json'
         //             }
@@ -173,7 +147,7 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
         //         if (response) {
         //             if (response.ok == true && response.status == 200) {
         //                 const data = await response.json()
-        //                 setCodigos(data.codigospostales)
+        //                 console.log(data);
         //             } else {
         //                 console.log("Error del Servidor");
         //             }
@@ -181,6 +155,50 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
         //     }
             
         // }
+    }
+
+    const handleOpenCloseModal = () =>{
+        setOpen((cur) => !cur);
+    }
+
+    const loadCodigos = async () =>{
+        // const response = await fetch("/api/codigos", {
+        //     method: "POST",
+        //     body: JSON.stringify(),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // })
+        // if (response) {
+        //     if (response.ok == true && response.status == 200) {
+        //         const data = await response.json()
+        //         setCodigos(data.codigospostales)
+        //     } else {
+        //         console.log("Error del Servidor");
+        //     }
+        // }
+        if (session) {
+               
+            const user = session.user.email
+            if (user) {
+                const response = await fetch("/api/codigos", {
+                    method: "POST",
+                    body: JSON.stringify({ user }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                if (response) {
+                    if (response.ok == true && response.status == 200) {
+                        const data = await response.json()
+                        setCodigos(data.codigospostales)
+                    } else {
+                        console.log("Error del Servidor");
+                    }
+                }
+            }
+            
+        }
     }
 
     useEffect(()=>{
@@ -201,7 +219,6 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
             setStatus(false)
            
         }else{
-
             setStatus(true)
         }
     },[correo,nombre,direction,municipio,localidad,telefono])

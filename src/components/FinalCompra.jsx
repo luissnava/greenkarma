@@ -1,10 +1,11 @@
 "use client";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Link from 'next/link';
 import {signIn,signOut,useSession} from "next-auth/react"
+import { counterContext } from '@/app/context/counterContext';
 
 const PedidoFinalizado = () => {
-
+    const {reset} = useContext(counterContext)
     const {data: session} = useSession()
 
     const getOrder = async() =>{
@@ -22,13 +23,14 @@ const PedidoFinalizado = () => {
                     }
                 })
                 if (response) {
-                    console.log(response);
+                    // console.log(response);
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
                         
                         if (data) {
                             if(data.ordenes.length > 0){
-                                handlePedido(data)
+                                // console.log("ordenes",data.ordenes);
+                                handlePedido(data.ordenes)
                             }
                             else {
                                 console.log("Sin Ordenes");
@@ -51,7 +53,7 @@ const PedidoFinalizado = () => {
             if (user) {
                 const response = await fetch("/api/pedidos", {
                     method: "POST",
-                    body: JSON.stringify(datos),
+                    body: JSON.stringify({data: datos ,user: user}),
                       headers: {
                         'Content-Type': 'application/json'
                     }
@@ -59,6 +61,7 @@ const PedidoFinalizado = () => {
                 if (response) {
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
+                        reset()
                         
                     } else {
                         console.log("Error del Servidor");
@@ -68,9 +71,7 @@ const PedidoFinalizado = () => {
         }
     }
     
-    useEffect(()=>{
-        getOrder()
-    },[])
+    getOrder()
 
     return (
         <div>

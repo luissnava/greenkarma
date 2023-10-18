@@ -20,35 +20,7 @@ const Carrusel = ({ valor }) => {
    
     return (
         <div className="w-[100%] mx-auto">
-            {/* <div className="mt-10 relative w-full">
-                <FontAwesomeIcon
-                    icon={faAngleLeft}
-                    size="2xl"
-                    className="carousel-icon left-10"
-                    onClick={scrollLeft}
-                />
-                <div ref={contentRef} className="carousel flex justify-center overflow-x-hidden scroll-smooth scrollbar-hide">
-                    {
-                        valor?.map(item => (
-                            <div key={item.id} className="sm:space-x-2 md:p-4 lg:p-4 p-4">
-                                <div key={item.id} className="sm:space-x-2 md:p-4 lg:p-4 p-4">
-                                   
-                                    
-                                  <NormalCard id={item.id} imageURL={item.imagen} name={item.name} price={item.price} description={item.description} />
-                                    
-                                </div>
-
-                            </div>
-                        ))
-                    }
-                </div>
-                <FontAwesomeIcon
-                    icon={faAngleRight}
-                    size="2xl"
-                    className="carousel-icon right-10"
-                    onClick={scrollRight}
-                />
-            </div> */}
+            
 
         <div className='mt-24 flex justify-center'>
             
@@ -74,7 +46,7 @@ const Carrusel = ({ valor }) => {
                                
                                 <div className="">
                                     <Link key={item.id} href={`/producto/${item.id}`}>
-                                        <Image src={item.imagen} width={300} height={100} alt="" 
+                                        <Image src={item.imagen} width={300} height={100} alt="imagen" 
                                         className="hover:scale-110 transition-transform duration-300 transform-gpu"/>
                                     </Link>
                                 </div>

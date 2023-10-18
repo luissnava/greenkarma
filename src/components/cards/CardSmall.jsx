@@ -16,7 +16,7 @@ export function CardSmall({data}) {
         floated={false}
         className="m-0 w-2/5 shrink-0 rounded-r-none"
       >
-        <Image src={data.urlImage} alt="detergente_multiusos" width={500} height={500}></Image>
+        <Image src={data.urlImage} alt="Imagen" width={500} height={500}></Image>
       </CardHeader>
       <CardBody className="w-full">
         <Typography variant="paragraph" color="gray" className="mb-2">

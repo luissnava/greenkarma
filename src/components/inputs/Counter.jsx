@@ -28,7 +28,7 @@ const CounterNumber = ({ ids, valor, contador, setCount, categorie }) => {
           <span className="m-auto text-2xl font-thin">−</span>
         </button>
         <input
-          type="number"
+          type="text"
           className="outline-none focus:outline-none text-center w-full bg-gray-100 font-semibold text-md hover:text-black focus:text-black md:text-base cursor-default flex items-center text-gray-700 outline-none"
           name="custom-input-number"
           value={contador}

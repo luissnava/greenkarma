@@ -21,7 +21,7 @@ import {
             Pedido # {identificador}
           </Typography>
           <div className="flex mb-4">
-            {productos.map(item => <Image key={`suscripimg-${item.id}`} src={item.urlImage} width={80} height={80}></Image>)}
+            {productos.map(item => <Image key={`suscripimg-${item.id}`} src={item.urlImage} alt="imagen" width={80} height={80}></Image>)}
           </div>
           
           <Typography className="text-lg">

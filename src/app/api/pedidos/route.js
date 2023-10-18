@@ -3,59 +3,66 @@ import {prisma} from "@/libs/prisma";
 
 
 export async function POST(request) {
+    let bandera = null;
     const data = await request.json()
+    console.log("datos desde frontend ",data.data);
     try {
-        const result = await prisma.pedidos.create({
+        for(const item of data.data){
+            
+            const result = await prisma.pedidos.create({
             data: {
-                user: data.user,
-                phone: data.phone,
-                productos: data.productos,
-                total: data.total,
+                user: item.user,
+                phone: item.phone,
+                productos: item.productos,
+                total: item.total,
                 status: "enProceso",
-                direction: data.direction,
-                location: data.location,
-                delegation: data.delegation,
-                codigopostal: data.codigopostal
-            }
-        })
-        if (result) {
-            console.log("Pedido Registrado", result);
-            const orders = await prisma.orders.delete({
-                where: {
-                    id: data.id
-                }
-            })
-            if (orders) {
-                console.log("Orden eliminada ->", orders);
-                const eliminados = await prisma.carrito.update({
+                direction: item.direction,
+                location: item.location,
+                delegation: item.delegation,
+                codigopostal: item.codigopostal
+            }})
+
+            if (result) {
+                console.log("Pedido Registrado", result);
+                const orders = await prisma.orders.delete({
                     where: {
-                        user: data.user
-                    },
-                    data: {
-                        products: []
+                        id: item.id
                     }
-                });
-                if (eliminados) {
-                    return NextResponse.json({
-                        success: true,
-                        message: 'Pedido agregado correctamente',
-                        data: result
-                    }, {status: 200});
-
-                }else{
-                    console.log("Error al vaciar el carrito");
+                })
+                if (orders) {
+                    console.log("Orden eliminada ->", orders);
+                    const eliminados = await prisma.carrito.update({
+                        where: {
+                            user: item.user
+                        },
+                        data: {
+                            products: []
+                        }
+                    });
+                    if (eliminados) {
+                        bandera = eliminados;
+                        console.log("Pedido agregado correctamente");
+    
+                    }else{
+                        console.log("Error al vaciar el carrito");
+                    }
+    
+                } else {
+                    console.log("Error al eliminar la orden");
                 }
-
+    
             } else {
-                console.log("Error al eliminar la orden");
+                console.log("error alñ agregar el pedido");
             }
-
-        } else {
-            return NextResponse.json({
-                success: false,
-                message: 'Error al agregar el pedido'
-            }, {status: 500});
         }
+
+        if (bandera !== null) {
+            return NextResponse.json({
+                success: true,
+                message: 'Pedido agregado correctamente',
+            }, {status: 200});
+        }
+       
     } catch (error) {
         console.log(error);
         return NextResponse.json({

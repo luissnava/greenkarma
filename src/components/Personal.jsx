@@ -5,7 +5,7 @@ import Image from "next/image";
 export function FondoPersonal() {
     return (
         <div className="w-full mb-32">
-            <div className="flex relative"> {/* Agrega la clase 'relative' al contenedor */}
+            <div className="flex relative"> 
                 <Image src="/personal/personal_01.png" width={10000} height={10000} alt="Imagen" className="absolute top-[10%] left-[40%] z-20 w-[50%]" />
                 <Image src="/personal/personal_02.png" width={10000} height={10000} alt="Imagen" className="absolute top-[5%] left-[16%] z-10 w-[65%]" />
 

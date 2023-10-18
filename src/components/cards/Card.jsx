@@ -18,7 +18,7 @@ const NormalCard = ({ id, imageURL, name, price, description }) => {
       <div className="mx-auto">
         <Link key={id} href={`/producto/${id}`}>
         
-          <Image src={imageURL} width={400} height={100} alt="" className="hover:scale-110 transition-transform duration-300 transform-gpu"/>
+          <Image src={imageURL} width={400} height={100} alt="imagen" className="hover:scale-110 transition-transform duration-300 transform-gpu"/>
         
       
         </Link>

@@ -31,6 +31,7 @@ function getWidth() {
 
 export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}) {
    
+    
     const {data: session} = useSession()
     const [open, setOpen] = useState(false)
     const [products, setProducts] = useState({})
@@ -245,7 +246,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
             switch (event) {
                 case '958ml':
                     if (selectEnvaseProducto == "masEnvase") {
-                        setPrice(parseFloat(products.price_original +20))
+                        setPrice(parseFloat(products.price_original)+ 20)
                     }else{
                         
                         setPrice(parseFloat(products.price_original).toFixed(2))
@@ -253,7 +254,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                     break;
                 case '3.78L':
                     if (selectEnvaseProducto == "masEnvase") {
-                        setPrice(parseFloat(products.price_original +20))
+                        setPrice(parseFloat(products.price_original) +20)
                     }else{
                         if (products.description == "spry") {
                             setPrice(parseFloat(products.price1).toFixed(2))
@@ -266,7 +267,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                 case '5L':
                     
                     if (selectEnvaseProducto == "masEnvase") {
-                        setPrice(parseFloat(products.price1 +20))
+                        setPrice(parseFloat(products.price1) +20)
                     }else{
                         setPrice(parseFloat(products.price1).toFixed(2))
                         
@@ -275,7 +276,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                 case '10L':
                     
                     if (selectEnvaseProducto == "masEnvase") {
-                        setPrice(parseFloat(products.price2 +20))
+                        setPrice(parseFloat(products.price2) +20)
                     }else{
                         setPrice(parseFloat(products.price2).toFixed(2))
                     }
@@ -295,7 +296,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                         }
                     }
                     if (selectOption == "5L") {
-                        setPrice(parseFloat(products.price1).toFixed())
+                        setPrice(parseFloat(products.price1).toFixed(2))
                     }
                     if (selectOption == "10L") {
                         setPrice(parseFloat(products.price2).toFixed(2))
@@ -303,21 +304,21 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                 break;
                 case 'masEnvase':
                     if (selectOption == "958ml") {
-                        setPrice(parseFloat(products.price_original + 20))
+                        setPrice(parseFloat(products.price_original)+20)
                     }
                     
                     if (selectOption == "3.78L") {
                         if (products.description == "spry") {
-                            setPrice(parseFloat(products.price1 + 20))
+                            setPrice(parseFloat(products.price1)+ 20)
                         }else{
-                            setPrice(parseFloat(products.price2 + 20))
+                            setPrice(parseFloat(products.price2)+ 20)
                         }
                     }
                     if (selectOption == "5.L") {
-                        setPrice(parseFloat(products.price2 + 20))
+                        setPrice(parseFloat(products.price2)+ 20)
                     }
                     if (selectOption == "10L") {
-                        setPrice(parseFloat(products.price2 + 20))
+                        setPrice(parseFloat(products.price2)+ 20)
                     }
                 break;
 
@@ -434,7 +435,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                             <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg xl:aspect-h-8 xl:aspect-w-7 
                             image-container cursor-pointer"  
                            >
-                                <Image key={index} src={item.imagen} alt={""} width={1000} height={1000} className="md:h-full md:w-full object-cover object-center "/>
+                                <Image key={index} src={item.imagen} alt={"Imagen"} width={1000} height={1000} className="md:h-full md:w-full object-cover object-center "/>
                                 
                             </div>
                             <div className="mt-4 text-sm text-gray-700 text-center">
@@ -550,7 +551,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                                         >
                                         {
                                             products.cantidadImagenes?.map((item,index) => (
-                                            <Image key={index} src={item} width={500} height={500} alt={products.name} 
+                                            <Image key={index} src={item} width={500} height={500} alt={"imagen"} 
                                             className="h-full w-full object-cover p-10"/>
                                             ))
                                         }

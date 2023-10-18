@@ -6,10 +6,10 @@ import { Typography } from '@material-tailwind/react'
 const About = () => {
     return (
         <>
-            <div class="relative h-screen">
-              <div class="absolute inset-0 bg-fixed bg-cover bg-center" style={{backgroundImage: "url('fondo_about.png')"}}>
+            <div className="relative h-screen">
+              <div className="absolute inset-0 bg-fixed bg-cover bg-center safari" style={{backgroundImage: "url('fondo_about.png')"}}>
                 
-                <div class="relative flex items-center justify-center h-full text-white text-4xl font-bold">
+                <div className="relative flex items-center justify-center h-full text-white text-4xl font-bold">
                     ¿QUIÉNES SOMOS?
                 </div>
               </div>

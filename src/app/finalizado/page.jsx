@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import Link from 'next/link';
 import { counterContext } from '@/app/context/counterContext';
 import { signIn, signOut, useSession } from "next-auth/react"
+import { data } from 'autoprefixer';
 
       
 const FinalOrder= () => {
@@ -10,6 +11,7 @@ const FinalOrder= () => {
     const {reset,session} = useContext(counterContext)
     const [ejecutado, setEjecutado] = useState(false);
     const [ordenes,setOrdenes] = useState(null)
+    const [bandera,setBandera] = useState("")
 
     console.log(session);
 
@@ -30,7 +32,7 @@ const FinalOrder= () => {
                     }
                 })
                 if (response) {
-                    console.log("Orden encontarda",response);
+                    
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
                         
@@ -39,9 +41,11 @@ const FinalOrder= () => {
                                 console.log("ordenes encontradas -> ",data);
                                 // handlePedido(data.ordenes)
                                 setOrdenes(data.ordenes)
+                                setBandera("lleno")
                             }
                             else {
                                 console.log("Sin Ordenes");
+                                setBandera("vacio")
                             }
                           
                         }
@@ -87,7 +91,12 @@ const FinalOrder= () => {
        
         const fetchData = async () => {
             await getOrder(); // Espera a que getOrder termine
-            await handlePedido(); // Luego, ejecuta handlePedido
+            if (bandera == "lleno") {
+                await handlePedido(); // Luego, ejecuta handlePedido
+            }else{
+                
+            }
+            
             setEjecutado(true); // Marca como ejecutado para que no se ejecute nuevamente
         }
 

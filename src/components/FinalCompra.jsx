@@ -14,6 +14,7 @@ const PedidoFinalizado = () => {
         console.log("function getOrder");
         if (session) {
             const user = session.user.email
+            console.log(session);
             if (user) {
                 console.log("buscando ordenes");
                 const response = await fetch("/api/getOrder", {
@@ -47,6 +48,8 @@ const PedidoFinalizado = () => {
                     }
                 }
             }
+        }else{
+            console.log("sin session");
         }
     }
 

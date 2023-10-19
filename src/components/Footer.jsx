@@ -46,7 +46,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="flex text-center justify-center items-center mt-5">
-                    <Link href={"/politica"}>Politica de Privacidad</Link>
+                    {/* <Link href={"/"}>Politica de Privacidad</Link> */}
                 </div>
             
         </>

@@ -3,7 +3,11 @@ import React, { useEffect, useState, useContext } from 'react'
 import Link from 'next/link';
 import { counterContext } from '@/app/context/counterContext';
 import { signIn, signOut, useSession } from "next-auth/react"
-const {data: session} = useSession()
+
+      
+const FinalOrder= () => {
+
+    const {data: session} = useSession()
 
     const {reset} = useContext(counterContext)
     const [ejecutado, setEjecutado] = useState(false);
@@ -90,8 +94,6 @@ const {data: session} = useSession()
     
         fetchData();
     }
-      
-const FinalOrder= () => {
     return (
         <div>
             <div className='w-full'>

@@ -14,9 +14,9 @@ const Tienda = () => {
     const handleBrowser = () =>{
         const browser = window.navigator.userAgent;
         console.log(browser);
-        if (browser.includes("Safari")) {
-            setBrowser("Safari")
-            console.log("Safari");
+        if (browser.includes("Mac")) {
+            setBrowser("Mac")
+            console.log("mac OS");
         }
     }
 
@@ -81,7 +81,7 @@ const Tienda = () => {
         <div className='border w-full p-0d'>
 
             <div className="relative h-screen">
-                <div className={`absolute inset-0 ${browser == "Safari" ? '': 'bg-fixed'} bg-cover bg-center`}
+                <div className={`absolute inset-0 ${browser == "Mac" ? '': 'bg-fixed'} bg-cover bg-center`}
                     style={
                         {
                             backgroundImage: "url('bann.jpeg')"

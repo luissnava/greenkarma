@@ -9,9 +9,9 @@ const About = () => {
     const handleBrowser = () =>{
         const browser = window.navigator.userAgent;
         console.log(browser);
-        if (browser.includes("Safari")) {
-            setBrowser("Safari")
-            console.log("Safari");
+        if (browser.includes("Mac")) {
+            setBrowser("Mac")
+            console.log("Mac");
         }else{
           setBrowser(null)
         }
@@ -20,7 +20,7 @@ const About = () => {
     return (
         <>
             <div className="relative h-screen">
-              <div className={`absolute inset-0 ${browser == "Safari" ? '': 'bg-fixed'} bg-cover bg-center`} style={{backgroundImage: "url('fondo_about.png')"}}>
+              <div className={`absolute inset-0 ${browser == "Mac" ? '': 'bg-fixed'} bg-cover bg-center`} style={{backgroundImage: "url('fondo_about.png')"}}>
                 
                 <div className="relative flex items-center justify-center h-full text-white text-4xl font-bold">
                     ¿QUIÉNES SOMOS?

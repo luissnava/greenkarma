@@ -12,7 +12,6 @@ const FinalOrder= () => {
     const {reset} = useContext(counterContext)
     const [ejecutado, setEjecutado] = useState(false);
     const [ordenes,setOrdenes] = useState(null)
-    console.log(data);
     console.log(session);
 
     const getOrder = async() =>{

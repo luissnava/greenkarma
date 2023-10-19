@@ -32,7 +32,7 @@ const StateCompo = ({children}) => {
         if (session) {
             const user = session.user.email
             if (user) {
-              console.log("obteniendo datos");
+              // console.log("obteniendo datos");
                 const response = await fetch("/api/getCarrito", {
                     method: "POST",
                     body: JSON.stringify({ user }),

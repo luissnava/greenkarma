@@ -92,14 +92,21 @@ const FinalOrder = () => {
         }
     }
 
-    useEffect(() => {
-        if (!ejecutado) {
+    if (!ejecutado) {
 
-            if (session) {
-                fetchData();
-            }
+        if (session) {
+            fetchData();
         }
-    }, [])
+    }
+
+    // useEffect(() => {
+    //     if (!ejecutado) {
+
+    //         if (session) {
+    //             fetchData();
+    //         }
+    //     }
+    // }, [])
 
     return (
         <div>

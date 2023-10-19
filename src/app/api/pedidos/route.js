@@ -52,7 +52,7 @@ export async function POST(request) {
                 }
     
             } else {
-                console.log("error alñ agregar el pedido");
+                console.log("error al agregar el pedido");
             }
         }
 

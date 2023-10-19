@@ -29,7 +29,7 @@ const PedidoFinalizado = () => {
                         
                         if (data) {
                             if(data.ordenes.length > 0){
-                                // console.log("ordenes",data.ordenes);
+                                console.log("ordenes",data.ordenes);
                                 handlePedido(data.ordenes)
                             }
                             else {
@@ -61,6 +61,7 @@ const PedidoFinalizado = () => {
                 if (response) {
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
+                        console.log("pedidos registrados",data);
                         reset()
                         
                     } else {
@@ -71,7 +72,9 @@ const PedidoFinalizado = () => {
         }
     }
     
-    getOrder()
+    useEffect(()=>{
+        getOrder()
+    },[])
 
     return (
         <div>

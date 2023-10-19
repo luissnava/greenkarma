@@ -1,13 +1,26 @@
 "use client";
-import React from 'react'
+import React , {useEffect, useState} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Typography } from '@material-tailwind/react'
 const About = () => {
+  const [browser,setBrowser] = useState(null)
+
+    const handleBrowser = () =>{
+        const browser = window.navigator.userAgent;
+        console.log(browser);
+        if (browser.includes("Safari")) {
+            setBrowser("Safari")
+            console.log("Safari");
+        }else{
+          setBrowser(null)
+        }
+    }
+    useEffect(()=>{handleBrowser},[])
     return (
         <>
             <div className="relative h-screen">
-              <div className="absolute inset-0 bg-fixed bg-cover bg-center safari" style={{backgroundImage: "url('fondo_about.png')"}}>
+              <div className={`absolute inset-0 ${browser == "Safari" ? '': 'bg-fixed'} bg-cover bg-center`} style={{backgroundImage: "url('fondo_about.png')"}}>
                 
                 <div className="relative flex items-center justify-center h-full text-white text-4xl font-bold">
                     ¿QUIÉNES SOMOS?

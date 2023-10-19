@@ -9,10 +9,7 @@ import { FondoCocina } from '@/components/Cocina'
 import { FondoPersonal } from '@/components/Personal'
 import { FondoAuto } from '@/components/Auto'
 import { useEffect, useState } from 'react'
-const handleBrowser = () =>{
-    const browser = window.navigator.userAgent;
-    console.log(browser);
-}
+
 
 
 const Home = () => {
@@ -23,7 +20,16 @@ const Home = () => {
     const [cocina,setCocina] = useState(null)
     const [autos,setAutos] = useState(null)
     const [personal,setPersonal] = useState(null)
+    const [browser,setBrowser] = useState(null)
 
+    const handleBrowser = () =>{
+        const browser = window.navigator.userAgent;
+        console.log(browser);
+        if (browser.includes("Safari")) {
+            setBrowser("Safari")
+            console.log("Safari");
+        }
+    }
 
     const getProductos = async () => {
         const lista = []
@@ -78,7 +84,7 @@ const Home = () => {
     return (
         <div className="w-full inline-block">
             <div className="mt-24 w-full h-screen">
-            <div className="bg-fixed bg-cover bg-center h-full safari" style={{ backgroundImage: "url('/fondo_inicio.png')" }}>
+            <div className={`${browser == "Safari" ? '': 'bg-fixed'} bg-cover bg-center h-full`} style={{ backgroundImage: "url('/fondo_inicio.png')" }}>
                 <div className="flex flex-col justify-center h-full p-4 md:p-14">
                 <div className="text-3xl md:text-4xl sm:text-xl text-white text-center mb-4">
                     <span>¡Productos que cuidan el medio ambiente y tu casa!</span>
@@ -149,8 +155,8 @@ const Home = () => {
             </div>
 
             <div className='w-full h-[50vh]'>
-            <div className="grid grid-cols-1 mx-auto flex justify-center items-center text-center p-10 w-full bg-fixed bg-cover 
-            bg-center h-full safari" style={{ backgroundImage: "url('/karma_fondo.png')" }}>
+            <div className={`grid grid-cols-1 mx-auto flex justify-center items-center text-center p-10 w-full ${browser == "Safari" ? '': 'bg-fixed'} bg-cover 
+            bg-center h-full`} style={{ backgroundImage: "url('/karma_fondo.png')" }}>
                 <div className="text-white text-2xl sm:text-2xl md:text-5xl">Libera tu mente de comprar productos de limpieza</div>
                 <div className="text-white text-2xl sm:text-2xl md:text-5xl mt-2">Escoge tu periodicidad de entrega</div>
                 <Link href={'/tienda'} 
@@ -189,8 +195,8 @@ const Home = () => {
             </div>
 
             <div className='w-full h-[50vh]'>
-                <div className="grid grid-cols-1 mx-auto flex justify-center items-center text-center p-5 w-full bg-fixed bg-cover 
-                bg-center h-full safari" style={{ backgroundImage: "url('/karma_fondo2.png')" }}>
+                <div className={`grid grid-cols-1 mx-auto flex justify-center items-center text-center p-5 w-full ${browser == "Safari" ? '': 'bg-fixed'} bg-cover 
+                bg-center h-full`} style={{ backgroundImage: "url('/karma_fondo2.png')" }}>
                     <div className="text-white text-center text-2xl md:text-5xl sm:text-xl  mt-2">¡Gracias por comprometerte con nuestro planeta!</div>
                     <div className="text-white text-center text-2xl md:text-4xl sm:text-lg  mb-5">Te devolvemos $10MXN por cada botella Green Karma que regreses</div>
                 </div>

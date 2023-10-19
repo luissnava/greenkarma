@@ -9,6 +9,16 @@ const Tienda = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages,setTotalPages] = useState(0)
     const [copia,setCopia] = useState(null)
+    const [browser,setBrowser] = useState(null)
+
+    const handleBrowser = () =>{
+        const browser = window.navigator.userAgent;
+        console.log(browser);
+        if (browser.includes("Safari")) {
+            setBrowser("Safari")
+            console.log("Safari");
+        }
+    }
 
     const getProductos = async () => {
         const lista = []
@@ -54,6 +64,7 @@ const Tienda = () => {
     },[])
 
     useEffect(() => {
+        handleBrowser()
         if (productos) {
             const totalPaginas = Math.ceil(productos.length / itemsPerPage);
             setTotalPages(totalPaginas)
@@ -70,7 +81,7 @@ const Tienda = () => {
         <div className='border w-full p-0d'>
 
             <div className="relative h-screen">
-                <div className="absolute inset-0 bg-fixed bg-cover bg-center"
+                <div className={`absolute inset-0 ${browser == "Safari" ? '': 'bg-fixed'} bg-cover bg-center`}
                     style={
                         {
                             backgroundImage: "url('bann.jpeg')"

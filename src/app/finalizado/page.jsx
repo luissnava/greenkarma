@@ -83,7 +83,7 @@ const FinalOrder= () => {
         }
     }
 
-    if (!ejecutado) {
+    if (!ejecutado && session) {
         const fetchData = async () => {
             await getOrder(); // Espera a que getOrder termine
             await handlePedido(); // Luego, ejecuta handlePedido

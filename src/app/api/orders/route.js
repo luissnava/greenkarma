@@ -9,6 +9,7 @@ export async function POST(request) {
         const result = await prisma.orders.create({
             data: {
                 user: data.user,
+                correo: data.correo,
                 phone: data.phone,
                 productos: data.productos,
                 total: data.total,

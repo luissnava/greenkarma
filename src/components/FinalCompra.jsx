@@ -23,7 +23,7 @@ const PedidoFinalizado = () => {
                     }
                 })
                 if (response) {
-                    // console.log(response);
+                    console.log("Orden encontarda",response);
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
                         
@@ -61,7 +61,7 @@ const PedidoFinalizado = () => {
                 if (response) {
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
-                        console.log("pedidos registrados",data);
+                        console.log("Pedido registrado",data);
                         reset()
                         
                     } else {

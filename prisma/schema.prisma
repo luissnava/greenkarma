@@ -12,8 +12,8 @@ generator client {
 
 // Database Prodcution
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
@@ -102,6 +102,7 @@ model CodigosPostales {
 model Pedidos {
   id           Int      @id @default(autoincrement())
   user         String
+  correo       String
   phone        String
   productos    Json
   total        String
@@ -113,9 +114,11 @@ model Pedidos {
   createdAt    DateTime @default(now())
   updateAt     DateTime @updatedAt
 }
+
 model Orders {
   id           Int      @id @default(autoincrement())
   user         String
+  correo       String
   phone        String
   productos    Json
   total        String

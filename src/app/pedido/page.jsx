@@ -62,14 +62,16 @@ export default function CheckoutForm({open,setOpen,carrito,totalPedido}) {
                 const response = await fetch("/api/orders", {
                     method: "POST",
                     body: JSON.stringify(
-                      {user: user, 
-                      phone: telefono,
-                      productos: carrito, 
-                      total:totalPedido, 
-                      direction:direction, 
-                      location:localidad,
-                      delegation: municipio,
-                      cp:codigoPostal}),
+                      {
+                        user: user, 
+                        correo: correo,
+                        phone: telefono,
+                        productos: carrito, 
+                        total:totalPedido, 
+                        direction:direction, 
+                        location:localidad,
+                        delegation: municipio,
+                        cp:codigoPostal}),
                       headers: {
                         'Content-Type': 'application/json'
                     }

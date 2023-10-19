@@ -29,7 +29,7 @@ const PedidoFinalizado = () => {
                         
                         if (data) {
                             if(data.ordenes.length > 0){
-                                console.log("ordenes",data.ordenes);
+                                console.log("ordenes",data);
                                 handlePedido(data.ordenes)
                             }
                             else {

@@ -416,7 +416,7 @@ export const data = [
       trimestre401: "price_1Nv6chANj46qGvECMuUfEKak",
     },
     litros: [
-      "958ml",
+      "950ml",
       "3.78L"
     ],
     description: "spry",
@@ -569,7 +569,7 @@ export const data = [
       trimestre301: "price_1Nv6W8ANj46qGvECG2r3Qigl",
     },
     litros: [
-      "958ml",
+      "950ml",
       "3.78L"
     ],
     description: "spry",
@@ -600,7 +600,7 @@ export const data = [
     
     },
     litros: [
-      "958ml",
+      "950ml",
       "3.78L"
     ],
     description: "spry",
@@ -664,7 +664,7 @@ export const data = [
       trimestre377: "price_1Nv6QMANj46qGvEC2uKYUz0j",
     },
     litros: [
-      "958ml",
+      "950ml",
       "3.78L"
     ],
     description: "spry",

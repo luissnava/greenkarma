@@ -43,7 +43,7 @@ const StateCompo = ({children}) => {
                 if (response) {
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
-                        console.log(data);
+                        // console.log(data);
                         if (data.success == false) {
                           console.log("sin productos en el carrito");
                         }else{

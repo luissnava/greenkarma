@@ -7,8 +7,9 @@ import { counterContext } from '@/app/context/counterContext';
 const FinalOrder= () => {
     const {reset,session} = useContext(counterContext)
     const [ejecutado, setEjecutado] = useState(false);
+    const [ordenes,setOrdenes] = useState(null)
 
-    // console.log(session);
+    console.log(session);
 
     const getOrder = async() =>{
         console.log("function getOrder");
@@ -34,7 +35,7 @@ const FinalOrder= () => {
                         if (data) {
                             if(data.ordenes.length > 0){
                                 console.log("ordenes encontradas -> ",data);
-                                await handlePedido(data.ordenes)
+                                setOrdenes(data.ordenes)
                             }
                             else {
                                 console.log("Sin Ordenes");
@@ -52,7 +53,7 @@ const FinalOrder= () => {
         }
     }
 
-    const handlePedido = async(datos) =>{
+    const handlePedido = async() =>{
         console.log("funcion insert pedido");
         if (session) {
             const user = session.user.email
@@ -60,7 +61,7 @@ const FinalOrder= () => {
                 console.log("insertando pedidos");
                 const response = await fetch("/api/pedidos", {
                     method: "POST",
-                    body: JSON.stringify({data: datos ,user: user}),
+                    body: JSON.stringify({data: ordenes ,user: user}),
                       headers: {
                         'Content-Type': 'application/json'
                     }
@@ -69,6 +70,7 @@ const FinalOrder= () => {
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
                         console.log("Pedido registrado ->",data);
+                        setOrdenes(null)
                         reset()
                         
                     } else {
@@ -83,6 +85,10 @@ const FinalOrder= () => {
        
         const fetchData = async () => {
             await getOrder(); // Espera a que getOrder termine
+            if (ordenes) {
+                await handlePedido();
+            }
+            
             setEjecutado(true); // Marca como ejecutado para que no se ejecute nuevamente
         }
 

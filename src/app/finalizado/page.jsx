@@ -2,18 +2,13 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Link from 'next/link';
 import { counterContext } from '@/app/context/counterContext';
-import { signIn, signOut, useSession } from "next-auth/react"
-import { data } from 'autoprefixer';
 
       
 const FinalOrder= () => {
-    // const { data: session } = useSession()
     const {reset,session} = useContext(counterContext)
     const [ejecutado, setEjecutado] = useState(false);
-    const [ordenes,setOrdenes] = useState(null)
-    const [bandera,setBandera] = useState("")
 
-    console.log(session);
+    // console.log(session);
 
     const getOrder = async() =>{
         console.log("function getOrder");
@@ -39,13 +34,10 @@ const FinalOrder= () => {
                         if (data) {
                             if(data.ordenes.length > 0){
                                 console.log("ordenes encontradas -> ",data);
-                                // handlePedido(data.ordenes)
-                                setOrdenes(data.ordenes)
-                                setBandera("lleno")
+                                await handlePedido(data.ordenes)
                             }
                             else {
                                 console.log("Sin Ordenes");
-                                setBandera("vacio")
                             }
                           
                         }
@@ -60,7 +52,7 @@ const FinalOrder= () => {
         }
     }
 
-    const handlePedido = async() =>{
+    const handlePedido = async(datos) =>{
         console.log("funcion insert pedido");
         if (session) {
             const user = session.user.email
@@ -68,7 +60,7 @@ const FinalOrder= () => {
                 console.log("insertando pedidos");
                 const response = await fetch("/api/pedidos", {
                     method: "POST",
-                    body: JSON.stringify({data: ordenes ,user: user}),
+                    body: JSON.stringify({data: datos ,user: user}),
                       headers: {
                         'Content-Type': 'application/json'
                     }
@@ -91,12 +83,6 @@ const FinalOrder= () => {
        
         const fetchData = async () => {
             await getOrder(); // Espera a que getOrder termine
-            if (bandera == "lleno") {
-                await handlePedido(); // Luego, ejecuta handlePedido
-            }else{
-                
-            }
-            
             setEjecutado(true); // Marca como ejecutado para que no se ejecute nuevamente
         }
 

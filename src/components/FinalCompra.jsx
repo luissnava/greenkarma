@@ -3,12 +3,14 @@ import React, { useEffect, useState, useContext } from 'react'
 import Link from 'next/link';
 import {signIn,signOut,useSession} from "next-auth/react"
 import { counterContext } from '@/app/context/counterContext';
+import { data } from 'autoprefixer';
 
 const PedidoFinalizado = () => {
-    const {reset} = useContext(counterContext)
     const {data: session} = useSession()
+    const {reset} = useContext(counterContext)
     const [ejecutado, setEjecutado] = useState(false);
     const [ordenes,setOrdenes] = useState(null)
+    console.log(data);
     console.log(session);
     const getOrder = async() =>{
         console.log("function getOrder");

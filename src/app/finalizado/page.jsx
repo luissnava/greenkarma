@@ -1,17 +1,17 @@
 "use client";
-import React, { useEffect, useState, useContext } from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import Link from 'next/link';
-import { counterContext } from '@/app/context/counterContext';
+import {counterContext} from '@/app/context/counterContext';
 
-      
-const FinalOrder= () => {
-    const {reset,session} = useContext(counterContext)
+
+const FinalOrder = () => {
+    const {reset, session} = useContext(counterContext)
     const [ejecutado, setEjecutado] = useState(false);
-    const [ordenes,setOrdenes] = useState(null)
+    const [ordenes, setOrdenes] = useState(null)
 
     console.log(session);
 
-    const getOrder = async() =>{
+    const getOrder = async () => {
         console.log("function getOrder");
         if (session) {
             const user = session.user.email
@@ -20,40 +20,39 @@ const FinalOrder= () => {
                 console.log("buscando ordenes");
                 const response = await fetch("/api/getOrder", {
                     method: "POST",
-                    body: JSON.stringify({
-                        user: user
-                    }),
-                      headers: {
+                    body: JSON.stringify(
+                        {user: user}
+                    ),
+                    headers: {
                         'Content-Type': 'application/json'
                     }
                 })
                 if (response) {
-                    
+
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
-                        
+
                         if (data) {
-                            if(data.ordenes.length > 0){
-                                console.log("ordenes encontradas -> ",data);
+                            if (data.ordenes.length > 0) {
+                                console.log("ordenes encontradas -> ", data);
                                 setOrdenes(data.ordenes)
-                            }
-                            else {
+                            } else {
                                 console.log("Sin Ordenes");
                             }
-                          
+
                         }
-                        
+
                     } else {
                         console.log("Error del Servidor");
                     }
                 }
             }
-        }else{
+        } else {
             console.log("sin session");
         }
     }
 
-    const handlePedido = async() =>{
+    const handlePedido = async () => {
         console.log("funcion insert pedido");
         if (session) {
             const user = session.user.email
@@ -61,18 +60,20 @@ const FinalOrder= () => {
                 console.log("insertando pedidos");
                 const response = await fetch("/api/pedidos", {
                     method: "POST",
-                    body: JSON.stringify({data: ordenes ,user: user}),
-                      headers: {
+                    body: JSON.stringify(
+                        {data: ordenes, user: user}
+                    ),
+                    headers: {
                         'Content-Type': 'application/json'
                     }
                 })
                 if (response) {
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
-                        console.log("Pedido registrado ->",data);
+                        console.log("Pedido registrado ->", data);
                         setOrdenes(null)
                         reset()
-                        
+
                     } else {
                         console.log("Error del Servidor");
                     }
@@ -81,23 +82,25 @@ const FinalOrder= () => {
         }
     }
 
-    if (!ejecutado) {
-       
-        const fetchData = async () => {
-            await getOrder(); // Espera a que getOrder termine
-            if (ordenes) {
-                await handlePedido();
-            }
-            
+    const fetchData = async () => {
+        await getOrder(); // Espera a que getOrder termine
+        if (ordenes) {
+            await handlePedido();
             setEjecutado(true); // Marca como ejecutado para que no se ejecute nuevamente
+        }else{
+            console.log("no se seteo el estado ordenes");
         }
-
-        if (session) {
-            fetchData();
-        }
-    
-        
     }
+
+    useEffect(() => {
+        if (!ejecutado) {
+
+            if (session) {
+                fetchData();
+            }
+        }
+    }, [])
+
     return (
         <div>
             <div className='w-full'>
@@ -114,8 +117,8 @@ const FinalOrder= () => {
                 <div className="flex text-xl items-center justify-center">
 
                     <Link className="text-center text-white w-[50%] p-2
-                                            rounded-lg bg-[#003c25] hover:bg-green-700
-                                            focus:outline-none focus:border-green-500 mt-24 mb-10"
+                                                                        rounded-lg bg-[#003c25] hover:bg-green-700
+                                                                        focus:outline-none focus:border-green-500 mt-24 mb-10"
                         href={"/user"}>Ver Pedidos</Link>
                 </div>
             </div>

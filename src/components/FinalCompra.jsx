@@ -9,7 +9,7 @@ const PedidoFinalizado = () => {
     const {data: session} = useSession()
     const [ejecutado, setEjecutado] = useState(false);
     const [ordenes,setOrdenes] = useState(null)
-
+    console.log(session);
     const getOrder = async() =>{
         console.log("function getOrder");
         if (session) {

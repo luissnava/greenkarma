@@ -81,7 +81,7 @@ const StateCompo = ({children}) => {
 
   
   return (
-    <counterContext.Provider value={{counter,message,order,igualar,restar,reset,mensaje,handleOrders}}>
+    <counterContext.Provider value={{counter,message,order,session,igualar,restar,reset,mensaje,handleOrders}}>
         {children}
     </counterContext.Provider>
   )

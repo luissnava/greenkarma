@@ -6,12 +6,11 @@ import { signIn, signOut, useSession } from "next-auth/react"
 
       
 const FinalOrder= () => {
-
-    const {data: session} = useSession()
-
-    const {reset} = useContext(counterContext)
+    // const { data: session } = useSession()
+    const {reset,session} = useContext(counterContext)
     const [ejecutado, setEjecutado] = useState(false);
     const [ordenes,setOrdenes] = useState(null)
+
     console.log(session);
 
     const getOrder = async() =>{

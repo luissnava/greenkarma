@@ -23,7 +23,8 @@ const Footer = () => {
                                 </a>
                             </div>
                         </div>
-                        <div className="clas">Desarrollado por BoomGrow</div>
+                        <div className="mt-5">Developed By</div>
+                        <div className="mt-2"><strong><a href="https://www.boom-partner.com/" target='_blank'> Boom Grow Partner</a></strong></div>
 
                     </div>
 

@@ -7,9 +7,10 @@ import { counterContext } from '@/app/context/counterContext';
 const PedidoFinalizado = () => {
     const {reset} = useContext(counterContext)
     const {data: session} = useSession()
+    const [ejecutado, setEjecutado] = useState(false);
+    const [ordenes,setOrdenes] = useState(null)
 
     const getOrder = async() =>{
-
         if (session) {
             const user = session.user.email
             if (user) {
@@ -29,8 +30,9 @@ const PedidoFinalizado = () => {
                         
                         if (data) {
                             if(data.ordenes.length > 0){
-                                console.log("ordenes",data);
-                                handlePedido(data.ordenes)
+                                console.log("ordenes encontradas -> ",data);
+                                // handlePedido(data.ordenes)
+                                setOrdenes(data.ordenes)
                             }
                             else {
                                 console.log("Sin Ordenes");
@@ -46,14 +48,14 @@ const PedidoFinalizado = () => {
         }
     }
 
-    const handlePedido = async(datos) =>{
+    const handlePedido = async() =>{
         
         if (session) {
             const user = session.user.email
             if (user) {
                 const response = await fetch("/api/pedidos", {
                     method: "POST",
-                    body: JSON.stringify({data: datos ,user: user}),
+                    body: JSON.stringify({data: ordenes ,user: user}),
                       headers: {
                         'Content-Type': 'application/json'
                     }
@@ -61,7 +63,7 @@ const PedidoFinalizado = () => {
                 if (response) {
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
-                        console.log("Pedido registrado",data);
+                        console.log("Pedido registrado ->",data);
                         reset()
                         
                     } else {
@@ -71,10 +73,18 @@ const PedidoFinalizado = () => {
             }
         }
     }
-    
-    useEffect(()=>{
-        getOrder()
-    },[])
+
+    useEffect(() => {
+        if (!ejecutado) {
+            const fetchData = async () => {
+              await getOrder(); // Espera a que getOrder termine
+              await handlePedido(); // Luego, ejecuta handlePedido
+              setEjecutado(true); // Marca como ejecutado para que no se ejecute nuevamente
+            }
+      
+            fetchData();
+          }
+      }, []); 
 
     return (
         <div>

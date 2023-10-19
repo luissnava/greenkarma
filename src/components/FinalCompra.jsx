@@ -11,9 +11,11 @@ const PedidoFinalizado = () => {
     const [ordenes,setOrdenes] = useState(null)
 
     const getOrder = async() =>{
+        console.log("function getOrder");
         if (session) {
             const user = session.user.email
             if (user) {
+                console.log("buscando ordenes");
                 const response = await fetch("/api/getOrder", {
                     method: "POST",
                     body: JSON.stringify({
@@ -49,10 +51,11 @@ const PedidoFinalizado = () => {
     }
 
     const handlePedido = async() =>{
-        
+        console.log("funcion insert pedido");
         if (session) {
             const user = session.user.email
             if (user) {
+                console.log("insertando pedidos");
                 const response = await fetch("/api/pedidos", {
                     method: "POST",
                     body: JSON.stringify({data: ordenes ,user: user}),
@@ -74,17 +77,16 @@ const PedidoFinalizado = () => {
         }
     }
 
-    useEffect(() => {
-        if (!ejecutado) {
-            const fetchData = async () => {
-              await getOrder(); // Espera a que getOrder termine
-              await handlePedido(); // Luego, ejecuta handlePedido
-              setEjecutado(true); // Marca como ejecutado para que no se ejecute nuevamente
-            }
+    if (!ejecutado) {
+        const fetchData = async () => {
+            await getOrder(); // Espera a que getOrder termine
+            await handlePedido(); // Luego, ejecuta handlePedido
+            setEjecutado(true); // Marca como ejecutado para que no se ejecute nuevamente
+        }
+    
+        fetchData();
+    }
       
-            fetchData();
-          }
-      }, []); 
 
     return (
         <div>

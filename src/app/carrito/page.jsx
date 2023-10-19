@@ -16,6 +16,13 @@ const Carrito = () => {
     const [open,setOpen] = useState(false)
     const { data: session } = useSession()
     const {restar} = useContext(counterContext)
+    const [size,setSize] = useState(null)
+
+    const pantalla = () =>{
+        const anchoPantalla = window.innerWidth;
+        setSize(anchoPantalla)
+        console.log(anchoPantalla);
+    }
 
     const getCarrito = async () => {
         if (session) {
@@ -299,6 +306,14 @@ const Carrito = () => {
         }
         
     },[carrito])
+
+    useEffect(()=>{
+        pantalla()
+        window.addEventListener("resize",pantalla)
+        return () => {
+            window.removeEventListener("resize", pantalla);
+          };
+    },[])
     
     return (
         <>
@@ -307,46 +322,52 @@ const Carrito = () => {
                     <h1 className=" mb-10 text-center text-2xl font-bold">Mi carrito</h1>
                 </div>
 
-                <div className="pt-20 flex">
+                <div className="pt-20 d:flex sm:block lg:flex carrito-responsive">
 
-                    <div className=" w-full justify-center px-6  overflow-y-auto h-[70vh]">
+                    <div className=" w-full justify-center px-6 overflow-y-auto h-[70vh]">
                         {/* Prodcutos  */}
                         {
                             carrito && carrito?.map((item, index) => (
                                 <div key={`contenedor-${index}`} className="rounded-lg">
-                                    <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start p-0">
+                                    <div className="md:justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-center p-0">
+                                    {
+                                        size < 540 ? <div className="flex items-center justify-end ">
+
+                                        <FontAwesomeIcon key={`icono-${index}`} size="xl" icon={faXmark} className="cursor-pointer" onClick={()=>deleteData(item.idProduct,item.urlImage,item.cantidadProduct,item.priceProduct)}></FontAwesomeIcon>
+
+                                        </div> : <></>
+                                        }
                                         <Image src={item.urlImage}
                                             key={index}
                                             width={1000}
                                             height={1000}
                                             alt="product-image"
                                             className="w-full rounded-lg sm:w-32 h-full" />
-                                        <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between p-0">
+                                            
+                                        <div className="sm:ml-4 sm:block sm:w-full sm:justify-center md:flex p-0 card-responsive">
+                                        {
+                                        size < 840 && size > 540 ? <div className="flex items-center justify-end ">
+
+                                        <FontAwesomeIcon key={`icono-${index}`} size="xl" icon={faXmark} className="cursor-pointer" onClick={()=>deleteData(item.idProduct,item.urlImage,item.cantidadProduct,item.priceProduct)}></FontAwesomeIcon>
+
+                                        </div> : <></>
+                                        }
                                             <div className="mt-5 sm:mt-0 w-full">
-                                                <h2 className="text-xl font-bold text-gray-900">{item.nameProduct}</h2>
-                                                <div className="mt-1 text-md text-gray-700">Precio Unidad:<strong> $ {item.priceUnidad}</strong></div>
+                                                <h2 className="sm:text-md md:text-xl font-bold text-gray-900">{item.nameProduct}</h2>
+                                                <div className="mt-1 text-md sm:text-sm md:text-md text-gray-700">Precio Unidad:<strong> $ {item.priceUnidad}</strong></div>
                                                
                                                {
                                                 item.idProduct == 1 ? <></> :
                                                 <>
-                                                    <div className="mt-1 text-md text-gray-700">Tamaño: <strong>{item.sizeProduct}</strong></div>
-                                                <div className="mt-1 text-md text-gray-700">Selecciona tu Envase: <strong>{item.contentProduct == "conEnvase" ? "Con Envae" : "+ Envase"}</strong></div>
-                                                 <div className="mt-1 text-md text-gray-700">Tipo de compra: <strong>{item.tipoCompra == "compraUnica" ? "Compra Unica" : "Compra Recurrente"}</strong></div>
+                                                    <div className="mt-1 text-md sm:text-sm md:text-md text-gray-700">Tamaño: <strong>{item.sizeProduct}</strong></div>
+                                                <div className="mt-1 text-md sm:text-sm md:text-md text-gray-700">Selecciona tu Envase: <strong>{item.contentProduct == "conEnvase" ? "Con Envae" : "+ Envase"}</strong></div>
+                                                 <div className="mt-1 text-md sm:text-sm md:text-md text-gray-700">Tipo de compra: <strong>{item.tipoCompra == "compraUnica" ? "Compra Unica" : "Compra Recurrente"}</strong></div>
                                                 </>
                                                }
                                                 {
                                                     item.periodoSuscription == "" || item.idProduct == 1 ? <></> :  <div className="mt-1 text-md text-gray-700">Periodicidad: <strong>{item.periodoSuscription}</strong></div>
                                                 }
-
-                                            </div>
-                                            <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-
-                                                <div className="flex items-center justify-end ">
-
-                                                    <FontAwesomeIcon key={`icono-${index}`} size="xl" icon={faXmark} className="cursor-pointer" onClick={()=>deleteData(item.idProduct,item.urlImage,item.cantidadProduct,item.priceProduct)}></FontAwesomeIcon>
-
-                                                </div>
-                                                <div className="flex items-center justify-end">
+                                                 <div className="flex justify-start w-[40%] mt-2">
                                                     <div className={`flex flex-row h-8  rounded-lg relative bg-transparent mt-1`} id={index}>
                                                         {
                                                             item.priceUnidad == 0 ? <>
@@ -371,9 +392,21 @@ const Carrito = () => {
                                                     </div>
 
                                                 </div>
-                                                <div className="flex justify-end items-center">
-                                                    <div className="text-2xl">{item.priceProduct > 0 ? `$ ${item.priceProduct}` : "0.00"}</div>
+
+                                            </div>
+                                            <div className="sm:block block mt-4 flex md:flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
+
+                                               
+                                                <div className="flex mt-5 md:justify-end sm:justify-start sm:mt-5 md:mt-0 lg:mt-0 items-center">
+                                                    <div className="text-2xl">{item.priceProduct > 0 ? `$${item.priceProduct}` : "0.00"}</div>
                                                 </div>
+                                                {
+                                                    size > 840 ? <div className="items-start flex justify-end">
+
+                                                    <FontAwesomeIcon key={`icono-${index}`} size="xl" icon={faXmark} className="cursor-pointer" onClick={()=>deleteData(item.idProduct,item.urlImage,item.cantidadProduct,item.priceProduct)}></FontAwesomeIcon>
+
+                                                </div> : <></>
+                                                }
 
                                             </div>
                                         </div>
@@ -399,7 +432,7 @@ const Carrito = () => {
                     </div>
                     {/* Subtotal  */}
                     {
-                        !message && <div className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+                        !message && <div className="w-full mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3 carta-responsive">
                             <div className="mb-10 flex justify-center">
                                 <p className="text-gray-700 text-xl">Resumen del pedido</p>
                             </div>

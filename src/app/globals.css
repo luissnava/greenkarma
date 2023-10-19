@@ -96,6 +96,21 @@ body{
   -webkit-background-attachment: fixed;
 }
 
+@media (max-width: 1150px){
+  .carrito-responsive{
+    display: block !important;
+  }
+  .carta-responsive{
+    width: 100% !important;
+    margin-top: 50px !important;
+  }
+}
+@media(max-width: 840px){
+  .card-responsive{
+    display: block !important;
+  }
+}
+
 @media (max-width: 959px) {
  .icono-oculto{
   display: block;

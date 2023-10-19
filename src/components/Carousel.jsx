@@ -30,7 +30,7 @@ const Carrusel = ({ valor }) => {
                 spaceBetween={0}
                 grabCursor={true}
                 centeredSlides={false}
-                loop={true}
+                // loop={true}
                 slidesPerView={3}
                 pagination={{
                     clickable: true,

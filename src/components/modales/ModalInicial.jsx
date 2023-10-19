@@ -15,6 +15,9 @@ export function ModalInicial() {
     {id: 1, name:"ATIZAPÁN DE ZARAGOZA,"},
     {id: 2, name:"NAUCALPAN,"},
     {id: 3, name:"TLALNEPANTLA,"},
+  ])
+
+  const [zonas2,setZonas2] = useState([
     {id: 4, name:"HUIXQUILUCAN,"},
     {id: 5, name:"NICOLÁS ROMERO,"},
     {id: 6, name:"CUAUTILÁN IZCALLI"}
@@ -45,16 +48,22 @@ export function ModalInicial() {
             <div className="mt-5 text-lg sm:text-md sm:mt-5 md:mt-10 md:text-xl font-bold text-gray-900 w-full text-center uppercase">
             ¡SEGUIRÉMOS AMPLIANDO NUESTRA ZONAS!
             </div>
-            <div className="text-sm font-bold text-gray-900 w-full text-center uppercase mt-5">
+            <div className="text-lg font-bold text-gray-900 w-full text-center uppercase mt-5">
             MANTENTE ATENTO A LAS ACTUALIZACIONES
             </div>
             
-            <div  className="text-sm w-full mt-5 mx-auto text-center sm:text-sm sm:mt-5 sm:w-[50%] md:mt-10 justify-center font-bold text-gray-900 md:w-full sm:w-[80%] uppercase">
-                  {
+            <div  className="flex text-sm w-full mt-5 sm:text-sm sm:mt-5 sm:w-[50%] md:mt-10
+            font-bold text-gray-900 md:w-full sm:w-[80%] uppercase p-5">
+                 <div className="w-[50%]"> {
                     zonas?.map(item => (
                       <div key={item.id} className="text-center">{item.name}</div>
                   ))
-                  }
+                  }</div>
+                  <div className="w-[50%]"> {
+                    zonas2?.map(item => (
+                      <div key={item.id} className="text-center">{item.name}</div>
+                  ))
+                  }</div>
             </div>
                 
             

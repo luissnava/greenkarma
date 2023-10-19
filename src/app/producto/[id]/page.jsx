@@ -282,65 +282,67 @@ const ProductSelected = ({params}) => {
     return (
         <div className=''>
         <div className="flex items-center justify-center">
-            <div className="w-[70%] flex mt-0 p-0 mt-32">
-                <Carousel
-                className="w-full"
-                prevArrow={({ handlePrev }) => (
-                    <IconButton
-                    variant="text"
-                    color="black"
-                    size="lg"
-                    onClick={handlePrev}
-                    className="!absolute top-2/4 left-4 -translate-y-2/4"
+            <div className="block w-[70%] md:flex lg:flex sm:block mt-0 p-0 mt-32">
+                <div className="w-full">
+                    <Carousel
+                    className="w-full"
+                    prevArrow={({ handlePrev }) => (
+                        <IconButton
+                        variant="text"
+                        color="black"
+                        size="lg"
+                        onClick={handlePrev}
+                        className="!absolute top-2/4 left-4 -translate-y-2/4"
+                        >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2}
+                            stroke="currentColor"
+                            className="h-6 w-6"
+                        >
+                            <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                            />
+                        </svg>
+                        </IconButton>
+                    )}
+                    nextArrow={({ handleNext }) => (
+                        <IconButton
+                        variant="text"
+                        color="black"
+                        size="lg"
+                        onClick={handleNext}
+                        className="!absolute top-2/4 !right-4 -translate-y-2/4"
+                        >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2}
+                            stroke="currentColor"
+                            className="h-6 w-6"
+                        >
+                            <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                            />
+                        </svg>
+                        </IconButton>
+                    )}
                     >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                        className="h-6 w-6"
-                    >
-                        <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                        />
-                    </svg>
-                    </IconButton>
-                )}
-                nextArrow={({ handleNext }) => (
-                    <IconButton
-                    variant="text"
-                    color="black"
-                    size="lg"
-                    onClick={handleNext}
-                    className="!absolute top-2/4 !right-4 -translate-y-2/4"
-                    >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                        className="h-6 w-6"
-                    >
-                        <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                        />
-                    </svg>
-                    </IconButton>
-                )}
-                >
-                    {producto.imagenes?.map((item,index) =>(
-                        <Image key={`imagen-${index}`} src={item} width={1000} height={1000} alt="image-2" className="h-full w-full object-cover p-10"/>
-                    ))}
-                
-                </Carousel>
+                        {producto.imagenes?.map((item,index) =>(
+                            <Image key={`imagen-${index}`} src={item} width={1000} height={1000} alt="image-2" className="h-full w-full object-cover p-10"/>
+                        ))}
+                    
+                    </Carousel>
+                </div>
 
-                <div className="w-[80%] p-2">
+                <div className="w-full lg:w-[80%] md:w-[80%] sm:w-full p-2">
                     <div className="text-2xl">
                         {producto.name}
                     </div>

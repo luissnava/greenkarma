@@ -494,74 +494,73 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                             {
                                 notificacion && <Alert color="green" className="text-center"><div className="text-center w-full">Producto agregado, revisa tu carrito</div></Alert>
                             }
-                            <div className="md:h-full md:flex items-center mt-0">
+                            <div className="md:h-full md:flex items-center mt-0 h-[90vh] overflow-y-auto">
                                 
-                                {
-                                    anchoPantalla  > 710 ? 
-                                    <div className="md:w-[50%] lg:w-[50%]">
-                                        <Carousel className="md:w-full" prevArrow={({ handlePrev }) => (
-                                            
-                                            <IconButton
-                                            variant="text"
-                                            color="black"
-                                            size="lg"
-                                            onClick={handlePrev}
-                                            className="!absolute top-2/4 left-4 -translate-y-2/4"
-                                            >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth={2}
-                                                stroke="currentColor"
-                                                className="h-6 w-6"
-                                            >
-                                                <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                                                />
-                                            </svg>
-                                            </IconButton>
-                                        )}
-                                        nextArrow={({ handleNext }) => (
-                                            <IconButton
-                                            variant="text"
-                                            color="black"
-                                            size="lg"
-                                            onClick={handleNext}
-                                            className="!absolute top-2/4 !right-4 -translate-y-2/4"
-                                            >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth={2}
-                                                stroke="currentColor"
-                                                className="h-6 w-6"
-                                            >
-                                                <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                                                />
-                                            </svg>
-                                            </IconButton>
-                                        )}
+                                
+                                    
+                                <div className="md:w-[50%] lg:w-[50%] ">
+                                    <Carousel className="md:w-full" prevArrow={({ handlePrev }) => (
+                                        
+                                        <IconButton
+                                        variant="text"
+                                        color="black"
+                                        size="lg"
+                                        onClick={handlePrev}
+                                        className="!absolute top-2/4 left-4 -translate-y-2/4"
                                         >
-                                        {
-                                            products.cantidadImagenes?.map((item,index) => (
-                                            <Image key={index} src={item} width={500} height={500} alt={"imagen"} 
-                                            className="h-full w-full object-cover p-10"/>
-                                            ))
-                                        }
-                                        </Carousel> 
-                                    </div>
-                                : <></>
-                                }
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth={2}
+                                            stroke="currentColor"
+                                            className="h-6 w-6"
+                                        >
+                                            <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                                            />
+                                        </svg>
+                                        </IconButton>
+                                    )}
+                                    nextArrow={({ handleNext }) => (
+                                        <IconButton
+                                        variant="text"
+                                        color="black"
+                                        size="lg"
+                                        onClick={handleNext}
+                                        className="!absolute top-2/4 !right-4 -translate-y-2/4"
+                                        >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth={2}
+                                            stroke="currentColor"
+                                            className="h-6 w-6"
+                                        >
+                                            <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                                            />
+                                        </svg>
+                                        </IconButton>
+                                    )}
+                                    >
+                                    {
+                                        products.cantidadImagenes?.map((item,index) => (
+                                        <Image key={index} src={item} width={500} height={500} alt={"imagen"} 
+                                        className="h-full w-full object-cover p-10"/>
+                                        ))
+                                    }
+                                    </Carousel> 
+                                </div>
+                                
                                 
 
-                                <div className="md:h-[90vh] lg:w-[50%] p-4  md:overflow-y-auto">
+                                <div className="md:h-[90vh] lg:w-[50%] p-4">
                                     <div className="text-2xl">
                                         {products.name}
                                     </div>

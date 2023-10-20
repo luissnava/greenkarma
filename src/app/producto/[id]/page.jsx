@@ -139,6 +139,8 @@ const ProductSelected = ({params}) => {
         if (producto.categorie !== "envase" && producto.categorie !== "paquetes") {
 
             const {price1, price2} = producto.prices;
+            console.log(price1);
+            console.log(price2);
             switch (event) {
                 case '950ml':
                     if (selectEnvaseProducto == "masEnvase") {

@@ -87,9 +87,9 @@ export default function User() {
     },[session])
     
     return (
-        <div className="flex w-full">
-            <div className="w-[30%] mt-24">
-                <Card className="h-[100vh] w-full p-5 shadow-xl">
+        <div className="block sm:block md:flex lg:flex pt-24">
+            <div className="md:w-[30%] w-full">
+                <Card className="md:h-[100vh] lg:h-full w-full p-5 shadow-xl">
                     <div className="text-center mt-10 mb-10 relative">
                         {
                             session?.user ? <>
@@ -121,7 +121,7 @@ export default function User() {
                 <div className="mt-10 text-center w-full">
                 <Typography variant="h3">Pedidos</Typography>
                 </div>
-                <div className="mt-20 p-0 space-x-5 flex flex-wrap ">
+                <div className="mt-20 p-0 md:space-x-5 lg:space-x-5  flex flex-wrap justify-center">
                     {
                         option ==  "pedidos" ?
                         

@@ -15,7 +15,7 @@ import {
       setStatus(status)
     }
     return (
-      <Card className="mt-6 w-[30%]">
+      <Card className="mt-6 md:w-[30%]">
         <CardBody>
           <Typography variant="h4" color="blue-gray" className="mb-2">
             Pedido # {identificador}

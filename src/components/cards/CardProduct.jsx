@@ -255,7 +255,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                 case '3.78L':
                     if (selectEnvaseProducto == "masEnvase") {
                         if (products.description == "spry") {
-                            setPrice(parseFloat(products.price1).toFixed(2))
+                            setPrice(parseFloat(products.price1).toFixed(2) +20)
                         }else{
                             setPrice(parseFloat(products.price_original) +20)
                         }

@@ -135,7 +135,6 @@ const ProductSelected = ({params}) => {
             }
         } 
     }
-
     const settingPriceProducto = (event) =>{
         if (producto.categorie !== "envase" && producto.categorie !== "paquetes") {
 
@@ -151,7 +150,12 @@ const ProductSelected = ({params}) => {
                     break;
                 case '3.78L':
                     if (selectEnvaseProducto == "masEnvase") {
-                        setPrice(parseFloat(producto.price +20))
+                        if (producto.description == "spry") {
+                            setPrice(parseFloat(price1).toFixed(2) +20)
+                        }else{
+
+                            setPrice(parseFloat(producto.price).toFixed(2) +20)
+                        }
                     }else{
                         if (producto.description == "spry") {
                             setPrice(parseFloat(price1).toFixed(2))

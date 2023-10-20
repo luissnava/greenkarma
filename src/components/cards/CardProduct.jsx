@@ -238,7 +238,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                   setPrice(parseFloat(products.price).toFixed(2));
                 break;
             }
-        } 
+        }
     }
 
     const settingPriceProducto = (event) =>{
@@ -246,7 +246,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
             switch (event) {
                 case '950ml':
                     if (selectEnvaseProducto == "masEnvase") {
-                        setPrice(parseFloat(products.price_original)+ 20)
+                        setPrice(parseFloat(products.price_original) + 20)
                     }else{
                         
                         setPrice(parseFloat(products.price_original).toFixed(2))
@@ -254,7 +254,12 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                     break;
                 case '3.78L':
                     if (selectEnvaseProducto == "masEnvase") {
-                        setPrice(parseFloat(products.price_original) +20)
+                        if (products.description == "spry") {
+                            setPrice(parseFloat(products.price1).toFixed(2))
+                        }else{
+                            setPrice(parseFloat(products.price_original) +20)
+                        }
+                        
                     }else{
                         if (products.description == "spry") {
                             setPrice(parseFloat(products.price1).toFixed(2))

@@ -74,6 +74,7 @@ CREATE TABLE "Productos" (
     "imagenes" JSONB NOT NULL,
     "litros" JSONB NOT NULL,
     "incluye" JSONB NOT NULL,
+    "description" TEXT NOT NULL,
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

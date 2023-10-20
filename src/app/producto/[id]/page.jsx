@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import { data } from '../../../../public/data';
+// import { data } from '../../../../public/data';
 import {signIn,signOut,useSession} from "next-auth/react"
 import { counterContext } from '@/app/context/counterContext';
 
@@ -29,6 +29,50 @@ const ProductSelected = ({params}) => {
     const [precio, setPrice] = useState(0)
     const [cantidad,setCantidad] = useState(1)
     const {igualar} = useContext(counterContext)
+
+    const getProductos = async () => {
+        const lista = []
+        const response = await fetch("/api/getProductos", {
+            method: "POST",
+            body: JSON.stringify(),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        if (response) {
+            if (response.ok == true && response.status == 200) {
+                const data = await response.json()
+                if (data) {
+                    const productos = data.productos.map(item => ({
+                        id: item.id,
+                        status:item.status,
+                        categorie: item.categorie,
+                        name: item.name,
+                        price: item.price,
+                        prices: item.prices,
+                        suscriptions: item.suscriptions,
+                        imagen: item.imagen,
+                        imagenes: item.imagenes,
+                        litros: item.litros,
+                        incluye: item.incluye,
+                        description: item.description,
+                        date_created: item.createdAt,
+                        date_updated: item.updateAt
+                    }))
+                    const selectedProduct = productos.find(product => product.id == params.id);
+                    if (selectedProduct) {
+                        setProducto(selectedProduct)
+                        if (selectedProduct.litros) {
+                            setLitros(selectedProduct.litros)
+                        }
+                    }
+                }
+
+            } else {
+                console.log("Error del Servidor");
+            }
+        }
+    }
     
     
     const handleSelectOption = (event) =>{
@@ -270,14 +314,10 @@ const ProductSelected = ({params}) => {
     }
 
     useEffect(() =>{
-        const selectedProduct = data.find(product => product.id == params.id);
-        if (selectedProduct) {
-            setProducto(selectedProduct)
-            if (selectedProduct.litros) {
-                setLitros(selectedProduct.litros)
-            }
-        }
+        getProductos()
+        
     },[params.id])
+
     
     return (
         <div className=''>

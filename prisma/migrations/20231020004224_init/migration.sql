@@ -104,6 +104,7 @@ CREATE TABLE "CodigosPostales" (
 CREATE TABLE "Pedidos" (
     "id" SERIAL NOT NULL,
     "user" TEXT NOT NULL,
+    "correo" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
     "productos" JSONB NOT NULL,
     "total" TEXT NOT NULL,
@@ -122,6 +123,7 @@ CREATE TABLE "Pedidos" (
 CREATE TABLE "Orders" (
     "id" SERIAL NOT NULL,
     "user" TEXT NOT NULL,
+    "correo" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
     "productos" JSONB NOT NULL,
     "total" TEXT NOT NULL,

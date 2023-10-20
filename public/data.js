@@ -406,7 +406,7 @@ export const data = [
     name: "Limpiador Anti Hongos",
     price: 100.83,
     prices: {
-      price1: 100.83,
+      price1: 401.19,
       price2: 401.19
     },
     suscriptions: {
@@ -559,7 +559,7 @@ export const data = [
     name: "Limpia Vidrios",
     price: 75.85,
     prices:{
-      price1: 75.85,
+      price1: 301.81,
       price2: 301.81
     },
     suscriptions: {
@@ -587,9 +587,9 @@ export const data = [
     ],
     
     name: "Desengrasante",
-    price: 24.69,
+    price: 24.89,
     prices:{
-      price1:24.89,
+      price1:98.24,
       price2: 98.24
     },
     suscriptions: {
@@ -654,7 +654,7 @@ export const data = [
     name: "Abrillantador de Llantas",
     price: 94.99,
     prices:{
-      price1:94.99,
+      price1:377.96,
       price2: 377.96
     },
     suscriptions: {

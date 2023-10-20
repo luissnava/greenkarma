@@ -336,7 +336,8 @@ const ProductSelected = ({params}) => {
                     )}
                     >
                         {producto.imagenes?.map((item,index) =>(
-                            <Image key={`imagen-${index}`} src={item} width={1000} height={1000} alt="image-2" className="h-full w-full object-cover p-10"/>
+                            <Image key={`imagen-${index}`} src={item} width={1000} height={1000} alt="image-2" 
+                            className="h-full w-full object-cover p-10"/>
                         ))}
                     
                     </Carousel>

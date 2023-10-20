@@ -31,7 +31,7 @@ export function FilterCategory({setProductos, productos,data}) {
   const [open, setOpen] = React.useState(0);
 
   const [litros, setLitros] = useState([
-    {id: "958ml", checked: false, label: "958ml"},
+    {id: "950ml", checked: false, label: "950ml"},
     {id: "3.78L", checked: false, label: "3.78L"},
     {id: "5L", checked: false, label: "5L"},
     {id: "10L", checked: false, label: "10L"}

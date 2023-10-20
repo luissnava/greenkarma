@@ -138,7 +138,7 @@ const ProductSelected = ({params}) => {
     const settingPriceProducto = (event) =>{
         if (producto.categorie !== "envase" && producto.categorie !== "paquetes") {
 
-            const {price1, price2} = producto.prices;
+            const {price1, price2} = producto.prices[0];
             console.log(producto.prices);
             console.log(price1);
             console.log(price2);

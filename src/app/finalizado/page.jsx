@@ -58,7 +58,7 @@ const FinalOrder = () => {
                 const response = await fetch("/api/pedidos", {
                     method: "POST",
                     body: JSON.stringify(
-                        {data: ordenes, user: user}
+                        {data: orders, user: user}
                     ),
                     headers: {
                         'Content-Type': 'application/json'

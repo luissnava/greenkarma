@@ -14,7 +14,7 @@ const FinalOrder = () => {
         if (session) {
             const user = session.user.email
             if (user) {
-                console.log("buscando ordenes");
+                // console.log("buscando ordenes");
                 const response = await fetch("/api/getOrder", {
                     method: "POST",
                     body: JSON.stringify(
@@ -31,7 +31,7 @@ const FinalOrder = () => {
 
                         if (data) {
                             if (data.ordenes.length > 0) {
-                                console.log("ordenes encontradas -> ", data);
+                                // console.log("ordenes encontradas -> ", data);
                                 orders = data.ordenes;
                             } else {
                                 console.log("Sin Ordenes");
@@ -50,11 +50,11 @@ const FinalOrder = () => {
     }
 
     const handlePedido = async () => {
-        console.log("funcion insert pedido");
+        // console.log("funcion insert pedido");
         if (session) {
             const user = session.user.email
             if (user) {
-                console.log("insertando pedidos");
+                // console.log("insertando pedidos");
                 const response = await fetch("/api/pedidos", {
                     method: "POST",
                     body: JSON.stringify(
@@ -67,7 +67,7 @@ const FinalOrder = () => {
                 if (response) {
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
-                        console.log("Pedido registrado ->", data);
+                        // console.log("Pedido registrado ->", data);
                         orders = null
                         reset()
 

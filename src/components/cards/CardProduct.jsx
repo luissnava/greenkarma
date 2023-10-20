@@ -81,7 +81,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                     cantidadProduct: cantidad,
                     tipoCompra: tipoCompra.valor ? tipoCompra.valor : "",
                     periodoSuscription: periodo,
-                    urlImage: selectOption == "3.78L" ? products.cantidadImagenes[0] : selectOption == "5L" ? (products.cantidadImagenes[2] ? products.cantidadImagenes[2] : products.cantidadImagenes[0]) : selectOption == "10L" ? products.cantidadImagenes[2] : selectOption == "958ml"  ? products.cantidadImagenes[2] : products.cantidadImagenes[0]
+                    urlImage: selectOption == "3.78L" ? products.cantidadImagenes[0] : selectOption == "5L" ? (products.cantidadImagenes[2] ? products.cantidadImagenes[2] : products.cantidadImagenes[0]) : selectOption == "10L" ? products.cantidadImagenes[2] : selectOption == "950ml"  ? products.cantidadImagenes[2] : products.cantidadImagenes[0]
                 }
             }
             const response = await fetch("/api/addCarrito", {
@@ -118,7 +118,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
         }
         else{
            
-            console.log(products);
+            // console.log(products);
             if (products.categorie == "envase") {
                 productos = {
                     idProduct:products.id,
@@ -141,7 +141,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                     cantidadProduct: cantidad,
                     tipoCompra: tipoCompra.valor ? tipoCompra.valor : "",
                     periodoSuscription: periodo,
-                    urlImage: selectOption == "3.78L" ? products.cantidadImagenes[0] : selectOption == "5L" ? (products.cantidadImagenes[2] ? products.cantidadImagenes[2] : products.cantidadImagenes[0]) : selectOption == "10L" ? products.cantidadImagenes[2] : selectOption == "958ml"  ? products.cantidadImagenes[2] : products.cantidadImagenes[0]
+                    urlImage: selectOption == "3.78L" ? products.cantidadImagenes[0] : selectOption == "5L" ? (products.cantidadImagenes[2] ? products.cantidadImagenes[2] : products.cantidadImagenes[0]) : selectOption == "10L" ? products.cantidadImagenes[2] : selectOption == "950ml"  ? products.cantidadImagenes[2] : products.cantidadImagenes[0]
                 }
             }
 
@@ -244,7 +244,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
     const settingPriceProducto = (event) =>{
         if (products.categorie !== "envase" && products.categorie !== "paquetes") {
             switch (event) {
-                case '958ml':
+                case '950ml':
                     if (selectEnvaseProducto == "masEnvase") {
                         setPrice(parseFloat(products.price_original)+ 20)
                     }else{
@@ -283,7 +283,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                     break;
 
                 case 'conEnvase':
-                    if (selectOption == "958ml") {
+                    if (selectOption == "950ml") {
                         setPrice(parseFloat(products.price_original).toFixed(2))
                     }
                     
@@ -303,7 +303,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                     }
                 break;
                 case 'masEnvase':
-                    if (selectOption == "958ml") {
+                    if (selectOption == "950ml") {
                         setPrice(parseFloat(products.price_original)+20)
                     }
                     
@@ -683,7 +683,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
                                         </div>
                                         
                                         {/* Button Carrito */}
-                                        <div className="text-center mt-5 w-full px-2">
+                                        <div className="text-center mt-5 w-full px-2 mb-10">
                                         
                                             {
                                                 products.categorie == "paquetes" ? 

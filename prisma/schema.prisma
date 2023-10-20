@@ -14,7 +14,7 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  // directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model Categories {
@@ -23,7 +23,7 @@ model Categories {
   name        String
 }
 
-model User {
+model User {init
   id        Int          @id @default(autoincrement())
   name      String
   lastname  String

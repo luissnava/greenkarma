@@ -97,7 +97,7 @@ const ProductSelected = ({params}) => {
 
             const {price1, price2} = producto.prices;
             switch (event) {
-                case '958ml':
+                case '950ml':
                     if (selectEnvaseProducto == "masEnvase") {
                         setPrice(parseFloat(producto.price +20))
                     }else{
@@ -183,7 +183,7 @@ const ProductSelected = ({params}) => {
                 periodoSuscription: periodo,
                 mensual: producto.mensual,
                 trimestral: producto.trimestral,
-                urlImage: selectOption == "3.78L" ? producto.imagenes[0] : selectOption == "5L" ? (producto.imagenes[2] ? producto.imagenes[2] : producto.imagenes[0]) : selectOption == "10L" ? (producto.imagenes[2] ? producto.imagenes[2]: producto.imagenes[0]) : selectOption == "958ml"  ? (producto.imagenes[2] ? producto.imagenes[2] : producto.imagenes[0])  : producto.imagenes[0]
+                urlImage: selectOption == "3.78L" ? producto.imagenes[0] : selectOption == "5L" ? (producto.imagenes[2] ? producto.imagenes[2] : producto.imagenes[0]) : selectOption == "10L" ? (producto.imagenes[2] ? producto.imagenes[2]: producto.imagenes[0]) : selectOption == "950ml"  ? (producto.imagenes[2] ? producto.imagenes[2] : producto.imagenes[0])  : producto.imagenes[0]
             }
             const response = await fetch("/api/addCarrito", {
                 method: "POST",
@@ -229,7 +229,7 @@ const ProductSelected = ({params}) => {
                 periodoSuscription: periodo,
                 mensual: producto.mensual,
                 trimestral: producto.trimestral,
-                urlImage: selectOption == "3.78L" ? producto.imagenes[0] : selectOption == "5L" ? (producto.imagenes[2] ? producto.imagenes[2] : producto.imagenes[0]) : selectOption == "10L" ? (producto.imagenes[2] ? producto.imagenes[2]: producto.imagenes[0]) : selectOption == "958ml"  ? (producto.imagenes[2] ? producto.imagenes[2] : producto.imagenes[0])  : producto.imagenes[0]
+                urlImage: selectOption == "3.78L" ? producto.imagenes[0] : selectOption == "5L" ? (producto.imagenes[2] ? producto.imagenes[2] : producto.imagenes[0]) : selectOption == "10L" ? (producto.imagenes[2] ? producto.imagenes[2]: producto.imagenes[0]) : selectOption == "950ml"  ? (producto.imagenes[2] ? producto.imagenes[2] : producto.imagenes[0])  : producto.imagenes[0]
             }
             const datalocal = localStorage.getItem('carrito')
             // Si localstorage existe,  actualiza

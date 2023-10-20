@@ -107,7 +107,7 @@ const FinalOrder = () => {
                     <div className="text-white text-center text-5xl md:text-5xl sm:text-xl mt-24">¡Gracias por comprometerte con nuestro planeta!</div>
                     <div className="text-white text-center text-4xl md:text-4xl sm:text-lg mb-5">Te devolvemos $10MXN por cada botella Green Karma que regreses</div>
                 </div>
-                <div className="flex text-5xl items-center justify-center mt-24">¡Gracias por tu compra!</div>
+                <div className="flex text-2xl sm:text:2xl md:text-5xl items-center justify-center mt-24">¡Gracias por tu compra!</div>
                 <div className="flex text-xl items-center justify-center">
 
                     <Link className="text-center text-white w-[50%] p-2

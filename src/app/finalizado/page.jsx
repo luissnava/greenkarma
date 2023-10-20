@@ -7,15 +7,12 @@ import {counterContext} from '@/app/context/counterContext';
 const FinalOrder = () => {
     const {reset, session} = useContext(counterContext)
     const [ejecutado, setEjecutado] = useState(false);
-    const [ordenes, setOrdenes] = useState(null)
-
-    console.log(session);
+    let orders = null
 
     const getOrder = async () => {
         console.log("function getOrder");
         if (session) {
             const user = session.user.email
-            console.log(session);
             if (user) {
                 console.log("buscando ordenes");
                 const response = await fetch("/api/getOrder", {
@@ -35,7 +32,7 @@ const FinalOrder = () => {
                         if (data) {
                             if (data.ordenes.length > 0) {
                                 console.log("ordenes encontradas -> ", data);
-                                setOrdenes(data.ordenes)
+                                orders = data.ordenes;
                             } else {
                                 console.log("Sin Ordenes");
                             }
@@ -71,7 +68,7 @@ const FinalOrder = () => {
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
                         console.log("Pedido registrado ->", data);
-                        setOrdenes(null)
+                        orders = null
                         reset()
 
                     } else {
@@ -84,7 +81,7 @@ const FinalOrder = () => {
 
     const fetchData = async () => {
         await getOrder(); // Espera a que getOrder termine
-        if (ordenes) {
+        if (orders !== null) {
             await handlePedido();
             setEjecutado(true); // Marca como ejecutado para que no se ejecute nuevamente
         }else{
@@ -92,21 +89,11 @@ const FinalOrder = () => {
         }
     }
 
-    if (!ejecutado) {
-
-        if (session) {
-            fetchData();
+    useEffect(() => {
+        if (!ejecutado && session) {
+          fetchData();
         }
-    }
-
-    // useEffect(() => {
-    //     if (!ejecutado) {
-
-    //         if (session) {
-    //             fetchData();
-    //         }
-    //     }
-    // }, [])
+      }, [ejecutado, session]);
 
     return (
         <div>

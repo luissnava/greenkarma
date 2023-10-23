@@ -24,10 +24,10 @@ const Home = () => {
 
     const handleBrowser = () => {
         const browser = window.navigator.userAgent;
-        console.log(browser);
+        // console.log(browser);
         if (browser.includes("Mac")) {
             setBrowser("Mac")
-            console.log("Mac OS");
+            // console.log("Mac OS");
         }
     }
 

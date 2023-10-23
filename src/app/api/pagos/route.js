@@ -3,7 +3,7 @@ import Stripe from "stripe";
 
 
 export async function POST (request){
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY_PRODUCTION)
     const data = await request.json()
     const sessionCheckout = await stripe.checkout.sessions.create({
         mode: 'payment',
@@ -30,7 +30,7 @@ export async function POST (request){
             success_url: "https://greenkarma.com.mx/finalizado",
             cancel_url: "https://greenkarma.com.mx/carrito"
     })
-    console.log(sessionCheckout);
+    // console.log(sessionCheckout);
     return NextResponse.json({
         status: 200,
         url: sessionCheckout.url,

@@ -30,7 +30,6 @@ function getWidth() {
 }
 
 export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}) {
-   
     
     const {data: session} = useSession()
     const [open, setOpen] = useState(false)
@@ -117,8 +116,6 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
             }
         }
         else{
-           
-            // console.log(products);
             if (products.categorie == "envase") {
                 productos = {
                     idProduct:products.id,
@@ -182,7 +179,6 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
         }
        
     }
-
 
     const handleSelectOption = (event) =>{
         setSelectOption(event)

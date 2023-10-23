@@ -9,13 +9,10 @@ const PedidoFinalizado = () => {
     const {reset} = useContext(counterContext)
     const [ejecutado, setEjecutado] = useState(false);
     const [ordenes,setOrdenes] = useState(null)
-    console.log(data);
-    console.log(session);
     const getOrder = async() =>{
-        console.log("function getOrder");
+        // console.log("function getOrder");
         if (session) {
-            const user = session.user.email
-            console.log(session);
+            const user = session.user.email;
             if (user) {
                 console.log("buscando ordenes");
                 const response = await fetch("/api/getOrder", {
@@ -28,7 +25,7 @@ const PedidoFinalizado = () => {
                     }
                 })
                 if (response) {
-                    console.log("Orden encontarda",response);
+                    // console.log("Orden encontarda",response);
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
                         
@@ -55,11 +52,11 @@ const PedidoFinalizado = () => {
     }
 
     const handlePedido = async() =>{
-        console.log("funcion insert pedido");
+        // console.log("funcion insert pedido");
         if (session) {
             const user = session.user.email
             if (user) {
-                console.log("insertando pedidos");
+                // console.log("insertando pedidos");
                 const response = await fetch("/api/pedidos", {
                     method: "POST",
                     body: JSON.stringify({data: ordenes ,user: user}),
@@ -70,7 +67,7 @@ const PedidoFinalizado = () => {
                 if (response) {
                     if (response.ok == true && response.status == 200) {
                         const data = await response.json()
-                        console.log("Pedido registrado ->",data);
+                        // console.log("Pedido registrado ->",data);
                         reset()
                         
                     } else {

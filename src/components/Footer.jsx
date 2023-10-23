@@ -24,7 +24,7 @@ const Footer = () => {
                             </div>
                         </div>
                         <div className="mt-5">Developed By</div>
-                        <div className="mt-2"><strong><a href="https://www.boom-partner.com/" target='_blank'> Boom Grow Partner</a></strong></div>
+                        <div className="mt-2"><strong><a href="https://www.boom-partner.com/" target='_blank'> Boom Growth Partner</a></strong></div>
 
                     </div>
 

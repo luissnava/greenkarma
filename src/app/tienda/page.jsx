@@ -40,6 +40,7 @@ const Tienda = () => {
                         name: item.name,
                         price: item.price,
                         prices: item.prices,
+                        description: item.description,
                         suscriptions: item.suscriptions,
                         imagen: item.imagen,
                         imagenes: item.imagenes,

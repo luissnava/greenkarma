@@ -246,9 +246,14 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
             switch (event) {
                 case '950ml':
                     if (selectEnvaseProducto == "masEnvase") {
+                        if (products.description == "spry") {
+                            setPrice(parseFloat(products.price1).toFixed(2) +20)
+                        }
                         setPrice(parseFloat(products.price_original) + 20)
                     }else{
-                        
+                        if (products.description == "spry") {
+                            setPrice(parseFloat(products.price1).toFixed(2))
+                        }
                         setPrice(parseFloat(products.price_original).toFixed(2))
                     }
                     break;
@@ -424,6 +429,7 @@ export function CardProduct({displayData, currentPage,totalPages,setCurrentPage}
         setSelecEnvasePaquete("")
         setSelecEnvaseProducto("")
     }
+
 
     return (
         <>

@@ -325,6 +325,7 @@ const ProductSelected = ({params}) => {
         
     },[params.id])
 
+   
     
     return (
         <div className=''>

@@ -317,14 +317,14 @@ const Carrito = () => {
     
     return (
         <>
-            <div className="w-[80%] m-auto">
+            <div className="w-[80%] mx-auto">
                 <div className="">
                     <h1 className=" mb-10 text-center text-2xl font-bold">Mi carrito</h1>
                 </div>
 
                 <div className="pt-20 d:flex sm:block lg:flex carrito-responsive">
 
-                    <div className=" w-full justify-center px-6 overflow-y-auto h-[70vh]">
+                    <div className=" w-[90%] justify-center px-6 overflow-y-auto h-[70vh]">
                         {/* Prodcutos  */}
                         {
                             carrito && carrito?.map((item, index) => (

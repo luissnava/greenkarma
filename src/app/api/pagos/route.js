@@ -25,10 +25,10 @@ export async function POST (request){
                     quantity: item.cantidadProduct
                 }
             )),
-            // success_url: "http://localhost:3000/finalizado",
-            // cancel_url: "http://localhost:3000/carrito"
-            success_url: "https://greenkarma.com.mx/finalizado",
-            cancel_url: "https://greenkarma.com.mx/carrito"
+            success_url: "http://localhost:3000/finalizado",
+            cancel_url: "http://localhost:3000/carrito"
+            // success_url: "https://greenkarma.com.mx/finalizado",
+            // cancel_url: "https://greenkarma.com.mx/carrito"
     })
     // console.log(sessionCheckout);
     return NextResponse.json({
